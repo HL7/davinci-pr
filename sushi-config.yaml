@@ -7,19 +7,26 @@ id: hl7.fhir.us.davinci-pr
 canonical: http://hl7.org/fhir/us/davinci-pr
 name: DavinciPostableRemittance
 title: Davinci Postable Remittance
-# title: Example Title
-# description: Example Implementation Guide for getting started with SUSHI
-status: draft # draft | active | retired | unknown
+status: active # draft | active | retired | unknown
 version: 0.1.0
 fhirVersion: 4.0.1 # https://www.hl7.org/fhir/valueset-FHIR-version.html
 copyrightYear: 2024+
 releaseLabel: ci-build # ci-build | draft | qa-preview | ballot | trial-use | release | update | normative+trial-use
 # license: CC0-1.0 # https://www.hl7.org/fhir/valueset-spdx-license.html
-# jurisdiction: urn:iso:std:iso:3166#US "United States of America" # https://www.hl7.org/fhir/valueset-jurisdiction.html
+jurisdiction: urn:iso:std:iso:3166#US "United States of America"
 publisher:
-  name: HL7 International / Payer Provider Information Exchange
-  url: http://hl7.org/Special/committees/ppie
+  name: HL7 International / Payer/Provider Information Exchange Work Group
+  url: http://www.hl7.org/Special/committees/claims
   # email: test@example.org
+
+extension:
+  - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
+    valueCode: trial-use
+  - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm
+    valueInteger: 3
+  - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-wg
+    valueCode: claims 
+
 
 # The dependencies property corresponds to IG.dependsOn. The key is the
 # package id and the value is the version (or dev/current). For advanced
