@@ -12,6 +12,7 @@ Usage: #definition
 * type = false
 * instance = false
 * inputProfile = Canonical(DownloadRemittanceParameters)
+* outputProfile = Canonical(RemittanceAdviceDocument)
 * parameter[+]
   * name = #RemittanceAdviceIdentifier
   * use = #in
@@ -36,6 +37,7 @@ Usage: #definition
   * max = "1"
   * documentation = "Remittance Advice file sent as a binary and compressed in a zip format."
   * type = #DocumentReference
+  * targetProfile = Canonical(RemittanceAdviceDocument)
 
 Profile: DownloadRemittanceParameters
 Parent: Parameters
@@ -48,7 +50,6 @@ Description: "A profile of Parameters that indicate the specific remittance advi
 * parameter ^slicing.rules = #open
 * parameter ^slicing.description = "Slice parameters based on the name"
 * parameter contains RemittanceAdviceIdentifier 1..1 and RemittanceAdviceType 0..1
-
 * parameter[RemittanceAdviceIdentifier]
   * name = "RemittanceAdviceIdentifier"
   * value[x] 1..1
@@ -64,3 +65,19 @@ InstanceOf: DownloadRemittanceParameters
 Description: "An example of specifying a remittance to download."
 * parameter[RemittanceAdviceIdentifier].valueString = "99999"
 * parameter[RemittanceAdviceType].valueCode = RemittanceAdviceType#835
+
+Profile: RemittanceAdviceDocument
+Parent: DocumentReference
+Id: remittanceAdviceDocument
+Title: "Remittance Advice Document"
+Description: "A profile of DocumentReference that provides the details of the remittance advice being returned."
+* status = #active
+* content 1..1
+  * attachment 1..1
+    * contentType = #application/zip
+    * data 1..1
+
+Instance: ExampleRemittanceAdviceDocument
+InstanceOf: RemittanceAdviceDocument
+Description: "An example of a returned remittance advice document"
+* content.attachment.data = "YmFzZTY0LWVuY29kZWQgemlwIGZpbGUgb2YgdGhlIG9yaWdpbmFsIGRvY3VtZW50"
