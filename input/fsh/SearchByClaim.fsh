@@ -217,8 +217,8 @@ Description: "A profiloe of Parameters that indicate the result paramaters of se
   * part[RemittanceAdviceType]
     * name = "RemittanceAdviceType"
     * value[x] 1..1
-    * value[x] only CodeableConcept
-    * valueCodeableConcept from RemittanceAdviceType (required)
+    * value[x] only code
+    * valueCode from RemittanceAdviceType (required)
   * part[RemittanceAdviceDate]
     * name = "RemittanceAdviceDate"
     * value[x] 1..1
@@ -431,6 +431,6 @@ Description: "An example of a result for searching for a remittance."
     * currency = urn:iso:std:iso:4217#CAD
 * parameter[Remittance]
   * part[RemittanceAdviceIdentifier].valueString = "99999"
-  * part[RemittanceAdviceType].valueCodeableConcept = RemittanceAdviceType#835
+  * part[RemittanceAdviceType].valueCode = RemittanceAdviceType#835
   * part[RemittanceAdviceDate].valueDate = 2024-06-07
   * part[RemittanceAdviceFileSize].valueInteger = 123456
