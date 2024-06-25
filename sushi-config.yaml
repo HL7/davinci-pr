@@ -5,8 +5,8 @@
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
 id: hl7.fhir.us.davinci-pr
 canonical: http://hl7.org/fhir/us/davinci-pr
-name: DavinciPostableRemittance
-title: Davinci Postable Remittance
+name: DaVinciPostableRemittance
+title: Da Vinci Postable Remittance
 status: active # draft | active | retired | unknown
 version: 0.1.0
 fhirVersion: 4.0.1 # https://www.hl7.org/fhir/valueset-FHIR-version.html
