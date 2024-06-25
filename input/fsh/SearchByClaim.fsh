@@ -61,6 +61,7 @@ Usage: #definition
     * max = "1"
     * documentation = "Payer Generated Claim ID (DCN or ICN)"
     * type = #string
+* insert OutgoingRemittanceParameters
 * insert OutgoingSearchParameters
 
 Profile: SearchByClaimParameters
@@ -88,12 +89,12 @@ Description: "A profiloe of Parameters that indicate the incoming parameters for
   * value[x] only string
 * parameter[Claim]
   * name = "Claim"
-  * part 3..3
+  * part 1..3
   * part ^slicing.discriminator.type = #value
   * part ^slicing.discriminator.path = "name"
   * part ^slicing.rules = #open
   * part ^slicing.description = "Slice Claim parameter parts based on the name"
-  * part contains ProviderClaimID 1..1 and ProviderID 1..1 and PayerClaimID 1..1
+  * part contains ProviderClaimID 1..1 and ProviderID 0..1 and PayerClaimID 0..1
   * part[ProviderClaimID]
     * name = "ProviderClaimID"
     * value[x] 1..1
@@ -111,13 +112,13 @@ Profile: SearchResultParameters
 Parent: Parameters
 Id: searchResultParameters
 Title: "Search Result Outgoing Parameters"
-Description: "A profiloe of Parameters that indicate the result paramaters of searching for a remittance."
+Description: "A profile of Parameters that indicate the result paramaters of searching for a remittance by claim or patient."
 * parameter 4..*
 * parameter ^slicing.discriminator.type = #value
 * parameter ^slicing.discriminator.path = "name"
 * parameter ^slicing.rules = #open
 * parameter ^slicing.description = "Slice parameters based on the name"
-* parameter contains TIN 1..1 and DateOfService 1..1 and Claim 1..1 and Patient 1..1 and Payment 0..1 and Remittance 0..*
+* parameter contains TIN 1..1 and DateOfService 1..1 and Claim 1..1 and Payer 1..1 and Patient 1..1 and Payment 0..1 and Remittance 0..*
 * parameter[TIN]
   * name = "TIN"
   * value[x] 1..1
@@ -128,12 +129,12 @@ Description: "A profiloe of Parameters that indicate the result paramaters of se
   * value[x] only Period
 * parameter[Claim]
   * name = #Claim
-  * part 6..6
+  * part 4..4
   * part ^slicing.discriminator.type = #value
   * part ^slicing.discriminator.path = "name"
   * part ^slicing.rules = #open
   * part ^slicing.description = "Slice Claim parameter parts based on the name"
-  * part contains ProviderClaimID 1..1 and ClaimReceivedDate 1..1 and ProviderID 1..1 and PayerClaimID 1..1 and PayerID 1..1 and PayerName 1..1
+  * part contains ProviderClaimID 1..1 and ClaimReceivedDate 1..1 and ProviderID 1..1 and PayerClaimID 1..1
   * part[ProviderClaimID]
     * name = "ProviderClaimID"
     * value[x] 1..1
@@ -150,6 +151,14 @@ Description: "A profiloe of Parameters that indicate the result paramaters of se
     * name = "PayerClaimID"
     * value[x] 1..1
     * value[x] only string
+* parameter[Payer]
+  * name = "Payer"
+  * part 2..2
+  * part ^slicing.discriminator.type = #value
+  * part ^slicing.discriminator.path = "name"
+  * part ^slicing.rules = #open
+  * part ^slicing.description = "Slice Payer parameter parts based on the name"
+  * part contains PayerID 1..1 and PayerName 1..1
   * part[PayerID]
     * name = "PayerID"
     * value[x] 1..1
@@ -229,7 +238,7 @@ Description: "A profiloe of Parameters that indicate the result paramaters of se
     * value[x] only integer
 
 
-RuleSet: OutgoingSearchParameters
+RuleSet: OutgoingRemittanceParameters
 * parameter[+]
   * name = #TIN
   * use = #out
@@ -238,46 +247,11 @@ RuleSet: OutgoingSearchParameters
   * documentation = "Medical Group / Billing Provider / Payee TIN"
   * type = #string
 * parameter[+]
-  * name = #DateOfService
+  * name = #Payer
   * use = #out
-  * min = 1
+  * min = 0
   * max = "1"
-  * documentation = "Date of Service"
-  * type = #Period
-* parameter[+]
-  * name = #Claim
-  * use = #out
-  * min = 1
-  * max = "1"
-  * documentation = "Details to verify correct claim found."
-  * part[+]
-    * name = #ProviderClaimID
-    * use = #out
-    * min = 1
-    * max = "1"
-    * documentation = "Provider generated Claim ID"
-    * type = #string
-  * part[+]
-    * name = #ClaimReceivedDate
-    * use = #out
-    * min = 1
-    * max = "1"
-    * documentation = "Claim Received Date"
-    * type = #date
-  * part[+]
-    * name = #ProviderID
-    * use = #out
-    * min = 1
-    * max = "1"
-    * documentation = "NPI or Payer Assigned Provider Identifier"
-    * type = #string
-  * part[+]
-    * name = #PayerClaimID
-    * use = #out
-    * min = 1
-    * max = "1"
-    * documentation = "Payer Generated Claim ID (DCN or ICN)"
-    * type = #string
+  * documentation = "Details of payer information."
   * part[+]
     * name = #PayerID
     * use = #out
@@ -291,40 +265,6 @@ RuleSet: OutgoingSearchParameters
     * min = 1
     * max = "1"
     * documentation = "Payer Name"
-    * type = #string
-* parameter[+]
-  * name = #Patient
-  * use = #out
-  * min = 1
-  * max = "1"
-  * documentation = "Details to verify correct patient found."
-  * part[+]
-    * name = #DateOfBirth
-    * use = #out
-    * min = 1
-    * max = "1"
-    * documentation = "Patient date of birth"
-    * type = #date
-  * part[+]
-    * name = #PatientID
-    * use = #out
-    * min = 1
-    * max = "1"
-    * documentation = "Patient Member (or Subscriber) Insurance ID"
-    * type = #string
-  * part[+]
-    * name = #PatientFirstName
-    * use = #out
-    * min = 1
-    * max = "1"
-    * documentation = "Patient First Name"
-    * type = #string
-  * part[+]
-    * name = #PatientLastName
-    * use = #out
-    * min = 1
-    * max = "1"
-    * documentation = "Patient Last Name"
     * type = #string
 * parameter[+]
   * name = #Payment
@@ -391,6 +331,83 @@ RuleSet: OutgoingSearchParameters
     * documentation = "Remittance Advice File Size"
     * type = #integer
 
+RuleSet: OutgoingSearchParameters
+* parameter[+]
+  * name = #DateOfService
+  * use = #out
+  * min = 1
+  * max = "1"
+  * documentation = "Date of Service"
+  * type = #Period
+* parameter[+]
+  * name = #Claim
+  * use = #out
+  * min = 1
+  * max = "1"
+  * documentation = "Details to verify correct claim found."
+  * part[+]
+    * name = #ProviderClaimID
+    * use = #out
+    * min = 1
+    * max = "1"
+    * documentation = "Provider generated Claim ID"
+    * type = #string
+  * part[+]
+    * name = #ClaimReceivedDate
+    * use = #out
+    * min = 1
+    * max = "1"
+    * documentation = "Claim Received Date"
+    * type = #date
+  * part[+]
+    * name = #ProviderID
+    * use = #out
+    * min = 1
+    * max = "1"
+    * documentation = "NPI or Payer Assigned Provider Identifier"
+    * type = #string
+  * part[+]
+    * name = #PayerClaimID
+    * use = #out
+    * min = 1
+    * max = "1"
+    * documentation = "Payer Generated Claim ID (DCN or ICN)"
+    * type = #string
+* parameter[+]
+  * name = #Patient
+  * use = #out
+  * min = 1
+  * max = "1"
+  * documentation = "Details to verify correct patient found."
+  * part[+]
+    * name = #DateOfBirth
+    * use = #out
+    * min = 1
+    * max = "1"
+    * documentation = "Patient date of birth"
+    * type = #date
+  * part[+]
+    * name = #PatientID
+    * use = #out
+    * min = 1
+    * max = "1"
+    * documentation = "Patient Member (or Subscriber) Insurance ID"
+    * type = #string
+  * part[+]
+    * name = #PatientFirstName
+    * use = #out
+    * min = 1
+    * max = "1"
+    * documentation = "Patient First Name"
+    * type = #string
+  * part[+]
+    * name = #PatientLastName
+    * use = #out
+    * min = 1
+    * max = "1"
+    * documentation = "Patient Last Name"
+    * type = #string
+
 Instance: ExampleSearchByClaim
 InstanceOf: SearchByClaimParameters
 Description: "An example of searching for remittances by claim."
@@ -411,13 +428,14 @@ Description: "An example of a result for searching for a remittance."
 * parameter[DateOfService].valuePeriod
   * start = 2024-01-01
   * end = 2024-01-31
+* parameter[Payer]
+  * part[PayerID].valueString = "54321"
+  * part[PayerName].valueString = "Acme Payment Inc"
 * parameter[Claim]
   * part[ProviderClaimID].valueString = "12345"
   * part[ClaimReceivedDate].valueDate = 2024-06-01
   * part[ProviderID].valueString = "23456"
   * part[PayerClaimID].valueString = "34567"
-  * part[PayerID].valueString = "54321"
-  * part[PayerName].valueString = "Acme Payment Inc"
 * parameter[Patient]
   * part[DateOfBirth].valueDate = 1970-11-27
   * part[PatientID].valueString = "23456"

@@ -36,7 +36,7 @@ Usage: #definition
   * part[+]
     * name = #DateOfBirth
     * use = #in
-    * min = 0
+    * min = 1
     * max = "1"
     * documentation = "Patient date of birth"
     * type = #date
@@ -47,6 +47,7 @@ Usage: #definition
     * max = "1"
     * documentation = "Patient Member (or Subscriber) Insurance ID"
     * type = #string
+* insert OutgoingRemittanceParameters
 * insert OutgoingSearchParameters
 
 Profile: SearchByPatientParameters
@@ -71,12 +72,12 @@ Description: "A profiloe of Parameters that indicate the incoming parameters for
   * value[x] only Period
 * parameter[Patient]
   * name = "Patient"
-  * part 1..2
+  * part 2..2
   * part ^slicing.discriminator.type = #value
   * part ^slicing.discriminator.path = "name"
   * part ^slicing.rules = #open
   * part ^slicing.description = "Slice Claim parameter parts based on the name"
-  * part contains PatientID 1..1 and DateOfBirth 0..1
+  * part contains PatientID 1..1 and DateOfBirth 1..1
   * part[PatientID]
     * name = "PatientID"
     * value[x] 1..1
