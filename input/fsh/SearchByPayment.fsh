@@ -39,7 +39,7 @@ Usage: #definition
     * min = 1
     * max = "1"
     * documentation = "Payment Amount"
-    * type = #money
+    * type = #Money
   * part[+]
     * name = #PaymentNumber
     * use = #in
