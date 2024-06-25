@@ -71,7 +71,7 @@ Parent: DocumentReference
 Id: remittanceAdviceDocument
 Title: "Remittance Advice Document"
 Description: "A profile of DocumentReference that provides the details of the remittance advice being returned."
-* status = #active
+* status = #current
 * content 1..1
   * attachment 1..1
     * contentType = #application/zip
@@ -80,4 +80,5 @@ Description: "A profile of DocumentReference that provides the details of the re
 Instance: ExampleRemittanceAdviceDocument
 InstanceOf: RemittanceAdviceDocument
 Description: "An example of a returned remittance advice document"
+* content.attachment.contentType = #application/zip
 * content.attachment.data = "YmFzZTY0LWVuY29kZWQgemlwIGZpbGUgb2YgdGhlIG9yaWdpbmFsIGRvY3VtZW50"
