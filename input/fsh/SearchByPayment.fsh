@@ -27,19 +27,32 @@ Usage: #definition
   * max = "1"
   * documentation = "Information about the payment being searched for."
   * part[+]
-    * name = #PaymentDate
+    * name = #PaymentIssueDate
     * use = #in
     * min = 1
     * max = "1"
-    * documentation = "Payment Date"
-    * type = #date
+    * documentation = "Payment Issue Date"
+    * type = #Period
   * part[+]
-    * name = #PaymentAmount
+    * name = #PaymentAmountRange
     * use = #in
-    * min = 1
+    * min = 0
     * max = "1"
-    * documentation = "Payment Amount"
-    * type = #Money
+    * documentation = "Payment Amount Range"
+    * part[+]
+      * name = #PaymentAmountLow
+      * use = #in
+      * min = 1
+      * max = "1"
+      * documentation = "Payment Number Low"
+      * type = #Money
+    * part[+]
+      * name = #PaymentAmountHigh
+      * use = #in
+      * min = 1
+      * max = "1"
+      * documentation = "Payment Number High"
+      * type = #Money
   * part[+]
     * name = #PaymentNumber
     * use = #in
@@ -54,6 +67,13 @@ Usage: #definition
     * max = "1"
     * documentation = "Payer Identifer"
     * type = #string
+  * part[+]
+    * name = #PayerName
+    * use = #in
+    * min = 0
+    * max = "1"
+    * documentation = "Payer Name"
+    * type = #string
 * insert OutgoingRemittanceParameters
 
 Profile: SearchByPaymentParameters
@@ -61,40 +81,56 @@ Parent: Parameters
 Id: searchByPaymentParameters
 Title: "Search By Payment Incoming Parameters"
 Description: "A profile of Parameters that indicate the incoming parameters for searching by a payment."
-* parameter 2..2
+* parameter 2..4
 * parameter ^slicing.discriminator.type = #value
 * parameter ^slicing.discriminator.path = "name"
 * parameter ^slicing.rules = #open
 * parameter ^slicing.description = "Slice parameters based on the name"
-* parameter contains TIN 1..1 and Payment 1..1
+* parameter contains TIN 1..1 and Payment 1..1 and PayerID 0..1 and PayerName 0..1
 * parameter[TIN]
   * name = "TIN"
   * value[x] 1..1
   * value[x] only string
 * parameter[Payment]
   * name = "Payment"
-  * part 3..4
+  * part 2..5
   * part ^slicing.discriminator.type = #value
   * part ^slicing.discriminator.path = "name"
   * part ^slicing.rules = #open
   * part ^slicing.description = "Slice Claim parameter parts based on the name"
-  * part contains PaymentDate 1..1 and PaymentAmount 1..1 and PaymentNumber 1..1 and PayerID 0..1
-  * part[PaymentDate]
-    * name = "PaymentDate"
+  * part contains PaymentIssueDate 1..1 and PaymentAmount 0..1 and PaymentNumber 1..1
+  * part[PaymentIssueDate]
+    * name = "PaymentIssueDate"
     * value[x] 1..1
-    * value[x] only date
+    * value[x] only Period
   * part[PaymentAmount]
     * name = "PaymentAmount"
-    * value[x] 1..1
-    * value[x] only Money
+    * part 2..2
+    * part ^slicing.discriminator.type = #value
+    * part ^slicing.discriminator.path = "name"
+    * part ^slicing.rules = #open
+    * part ^slicing.description = "Slice Claim parameter parts based on the name"
+    * part contains PaymentAmountLow 1..1 and PaymentAmountHigh 1..1
+    * part[PaymentAmountLow]
+      * name = "PaymentAmountLow"
+      * value[x] 1..1
+      * value[x] only Money
+    * part[PaymentAmountHigh]
+      * name = "PaymentAmountHigh"
+      * value[x] 1..1
+      * value[x] only Money
   * part[PaymentNumber]
     * name = "PaymentNumber"
     * value[x] 1..1
     * value[x] only string
-  * part[PayerID]
-    * name = "PayerID"
-    * value[x] 0..1
-    * value[x] only string
+* parameter[PayerID]
+  * name = "PayerID"
+  * value[x] 0..1
+  * value[x] only string
+* parameter[PayerName]
+  * name = "PayerName"
+  * value[x] 0..1
+  * value[x] only string
 
 Profile: SearchByPaymentResultParameters
 Parent: Parameters
@@ -134,9 +170,9 @@ Description: "A profile of Parameters that indicate the result paramaters of sea
   * part ^slicing.discriminator.path = "name"
   * part ^slicing.rules = #open
   * part ^slicing.description = "Slice Payment parameter parts based on the name"
-  * part contains PaymentDate 1..1 and PaymentNumber 1..1 and PaymentAmount 1..1
-  * part[PaymentDate]
-    * name = "PaymentDate"
+  * part contains PaymentIssueDate 1..1 and PaymentNumber 1..1 and PaymentAmount 1..1
+  * part[PaymentIssueDate]
+    * name = "PaymentIssueDate"
     * value[x] 1..1
     * value[x] only date
   * part[PaymentNumber]
@@ -179,12 +215,16 @@ InstanceOf: SearchByPaymentParameters
 Description: "An example of searching for remittances by payment."
 * parameter[TIN].valueString = "123456"
 * parameter[Payment]
-  * part[PaymentDate].valueDate = 2024-06-07
+  * part[PaymentIssueDate].valuePeriod.start = 2024-06-07
+  * part[PaymentIssueDate].valuePeriod.end = 2024-06-10
   * part[PaymentNumber].valueString = "11111"
-  * part[PaymentAmount].valueMoney
+  * part[PaymentAmount].part[PaymentAmountLow].valueMoney
     * value = 123.45
     * currency = urn:iso:std:iso:4217#CAD
-  * part[PayerID].valueString = "54321"
+  * part[PaymentAmount].part[PaymentAmountHigh].valueMoney
+    * value = 223.45
+    * currency = urn:iso:std:iso:4217#CAD
+* parameter[PayerID].valueString = "54321"
 
 Instance: ExampleSearchPaymentResult
 InstanceOf: SearchByPaymentResultParameters
@@ -194,7 +234,7 @@ Description: "An example of a result for searching for a remittance."
   * part[PayerID].valueString = "54321"
   * part[PayerName].valueString = "Acme Payment Inc"
 * parameter[Payment]
-  * part[PaymentDate].valueDate = 2024-06-07
+  * part[PaymentIssueDate].valueDate = 2024-06-07
   * part[PaymentNumber].valueString = "11111"
   * part[PaymentAmount].valueMoney
     * value = 123.45
@@ -203,4 +243,9 @@ Description: "An example of a result for searching for a remittance."
   * part[RemittanceAdviceIdentifier].valueString = "99999"
   * part[RemittanceAdviceType].valueCode = RemittanceAdviceType#835
   * part[RemittanceAdviceDate].valueDate = 2024-06-07
+  * part[RemittanceAdviceFileSize].valueInteger = 123456
+* parameter[Remittance][+]
+  * part[RemittanceAdviceIdentifier].valueString = "8888"
+  * part[RemittanceAdviceType].valueCode = RemittanceAdviceType#PDF
+  * part[RemittanceAdviceDate].valueDate = 2024-06-09
   * part[RemittanceAdviceFileSize].valueInteger = 123456

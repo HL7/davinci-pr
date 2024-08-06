@@ -47,6 +47,20 @@ Usage: #definition
     * max = "1"
     * documentation = "Patient Member (or Subscriber) Insurance ID"
     * type = #string
+* parameter[+]
+  * name = #PayerID
+  * use = #in
+  * min = 0
+  * max = "1"
+  * documentation = "Payer Identifer"
+  * type = #string
+* parameter[+]
+  * name = #PayerName
+  * use = #in
+  * min = 0
+  * max = "1"
+  * documentation = "Payer Name"
+  * type = #string
 * insert OutgoingRemittanceParameters
 * insert OutgoingSearchParameters
 
@@ -55,12 +69,12 @@ Parent: Parameters
 Id: searchByPatientParameters
 Title: "Search By Patient Incoming Parameters"
 Description: "A profiloe of Parameters that indicate the incoming parameters for searching by a patient."
-* parameter 2..3
+* parameter 2..5
 * parameter ^slicing.discriminator.type = #value
 * parameter ^slicing.discriminator.path = "name"
 * parameter ^slicing.rules = #open
 * parameter ^slicing.description = "Slice parameters based on the name"
-* parameter contains TIN 1..1 and DateOfService 0..1 and Patient 1..1
+* parameter contains TIN 1..1 and DateOfService 0..1 and Patient 1..1 and PayerID 0..1 and PayerName 0..1
 
 * parameter[TIN]
   * name = "TIN"
@@ -70,6 +84,14 @@ Description: "A profiloe of Parameters that indicate the incoming parameters for
   * name = "DateOfService"
   * value[x] 1..1
   * value[x] only Period
+* parameter[PayerID]
+  * name = "PayerID"
+  * value[x] 0..1
+  * value[x] only string
+* parameter[PayerName]
+  * name = "PayerName"
+  * value[x] 0..1
+  * value[x] only string
 * parameter[Patient]
   * name = "Patient"
   * part 2..2

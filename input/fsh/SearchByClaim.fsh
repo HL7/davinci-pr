@@ -61,6 +61,20 @@ Usage: #definition
     * max = "1"
     * documentation = "Payer Generated Claim ID (DCN or ICN)"
     * type = #string
+* parameter[+]
+  * name = #PayerID
+  * use = #in
+  * min = 0
+  * max = "1"
+  * documentation = "Payer Identifer"
+  * type = #string
+* parameter[+]
+  * name = #PayerName
+  * use = #in
+  * min = 0
+  * max = "1"
+  * documentation = "Payer Name"
+  * type = #string
 * insert OutgoingRemittanceParameters
 * insert OutgoingSearchParameters
 
@@ -68,13 +82,13 @@ Profile: SearchByClaimParameters
 Parent: Parameters
 Id: searchByClaimParameters
 Title: "Search By Claim Incoming Parameters"
-Description: "A profiloe of Parameters that indicate the incoming parameters for searching by claim."
-* parameter 2..4
+Description: "A profile of Parameters that indicate the incoming parameters for searching by claim."
+* parameter 2..6
 * parameter ^slicing.discriminator.type = #value
 * parameter ^slicing.discriminator.path = "name"
 * parameter ^slicing.rules = #open
 * parameter ^slicing.description = "Slice parameters based on the name"
-* parameter contains TIN 1..1 and DateOfService 0..1 and PatientID 0..1 and Claim 1..1
+* parameter contains TIN 1..1 and DateOfService 0..1 and PatientID 0..1 and Claim 1..1 and PayerID 0..1 and PayerName 0..1
 * parameter[TIN]
   * name = "TIN"
   * value[x] 1..1
@@ -107,6 +121,14 @@ Description: "A profiloe of Parameters that indicate the incoming parameters for
     * name = "PayerClaimID"
     * value[x] 1..1
     * value[x] only string
+* parameter[PayerID]
+  * name = "PayerID"
+  * value[x] 0..1
+  * value[x] only string
+* parameter[PayerName]
+  * name = "PayerName"
+  * value[x] 0..1
+  * value[x] only string
 
 Profile: SearchResultParameters
 Parent: Parameters
@@ -249,7 +271,7 @@ RuleSet: OutgoingRemittanceParameters
 * parameter[+]
   * name = #Payer
   * use = #out
-  * min = 0
+  * min = 1
   * max = "1"
   * documentation = "Details of payer information."
   * part[+]
