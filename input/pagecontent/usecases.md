@@ -32,6 +32,9 @@ The list of input and output search parameters has been reviewed by multiple pro
 </blockquote>
 {% endraw %}
 
+#### No Match Results
+If the set of input parameters results in no results found, then the output Parameters will be empty.
+
 
 ### Search for Remittance by Claim
 This search is used to find remittances associated with a previous claim submission.  This API does not provide any means to return a claim status.  As well, only remittances for adjudicated claims will be returned.  The payer will search for the claim given the passed-in search parameters and find remittances associated with that claim.  The remittance information is returned along with claim information that can be used by the provider to verify the proper claim was retrieved.  Any of the returned remittance identifiers can then be used in the Download Remittance operation.
@@ -49,25 +52,25 @@ This search is used to find remittances associated with a previous claim submiss
   * Claim Charge Amount (optional)
 
 #### Output
-* Provider TIN (mandatory)
-* Payer Information (mandatory)
+* Provider TIN (optional, mandatory if Remittance information found)
+* Payer Information (optional, mandatory if Remittance information found)
   * Payer ID (mandatory)
   * Payer Name (mandatory)
-* Patient Information (mandatory)
+* Patient Information (optional, mandatory if Remittance information found)
   * Patient ID (mandatory)
   * Patient Date of Birth (mandatory)
   * Patient First Name (mandatory)
   * Patient Last Name (mandatory)
-* Claim Information (mandatory, repeats)
+* Claim Information (optional, mandatory if Remittance information found, repeats)
+  * Payer Claim ID (mandatory) - the primary key of the claim information
   * Provider Claim ID (mandatory)
   * Claim Received Date (mandatory)
   * Provider ID (mandatory)
-  * Payer Claim ID (mandatory)
-* Payment Information (optional)
-  * Payment Issue Date (mandatory)
-  * Payment Number (mandatory)
-  * Payment Amount (mandatory)
-* Remittance Information (optional, repeats)
+  * Payment Information (optional)
+    * Payment Issue Date (mandatory)
+    * Payment Number (mandatory)
+    * Payment Amount (mandatory)
+* Remittance Information (optional, mandatory if Remittance information found, repeats)
   * Remittance Advice Identifier (mandatory)
   * Remittance Advice Type (mandatory)
   * Remittance Advice Date (mandatory)
@@ -89,25 +92,25 @@ This search is used to find remittances associated with a patient.  The payer wi
   * Patient Last Name (optional)
 
 #### Output
-* Provider TIN (mandatory)
-* Payer Information (mandatory)
+* Provider TIN (optional, mandatory if Remittance information found)
+* Payer Information (optional, mandatory if Remittance information found)
   * Payer ID (mandatory)
   * Payer Name (mandatory)
-* Patient Information (mandatory)
+* Patient Information (optional, mandatory if Remittance information found)
   * Patient ID (mandatory)
   * Patient Date of Birth (mandatory)
   * Patient First Name (mandatory)
   * Patient Last Name (mandatory)
-* Claim Information (mandatory, repeats)
+* Claim Information (optional, mandatory if Remittance information found, repeats)
+  * Payer Claim ID (mandatory) - the primary key of the claim information
   * Provider Claim ID (mandatory)
   * Claim Received Date (mandatory)
   * Provider ID (mandatory)
-  * Payer Claim ID (mandatory)
-* Payment Information (optional)
-  * Payment Issue Date (mandatory)
-  * Payment Number (mandatory)
-  * Payment Amount (mandatory)
-* Remittance Information (optional, repeats)
+  * Payment Information (optional)
+    * Payment Issue Date (mandatory)
+    * Payment Number (mandatory)
+    * Payment Amount (mandatory)
+* Remittance Information (optional, mandatory if Remittance information found, repeats)
   * Remittance Advice Identifier (mandatory)
   * Remittance Advice Type (mandatory)
   * Remittance Advice Date (mandatory)
@@ -131,15 +134,15 @@ This search is used to find remittances associated with a received payment.  The
 NOTE: Due to the format of payment numbers, specifically cheques where they may be many leading zeroes, only the significant numbers need to be specified and payers **SHALL** search for these using a wild card search.  eg. 0000000123 can be specified as 123.
 
 #### Output
-* Provider TIN (mandatory)
-* Payer Information (mandatory)
+* Provider TIN (optional, mandatory if Remittance information found)
+* Payer Information (optional, mandatory if Remittance information found)
   * Payer ID (mandatory)
   * Payer Name (mandatory)
-* Payment Information (optional)
+* Payment Information (optional, mandatory if Remittance information found)
   * Payment Issue Date (mandatory)
   * Payment Number (mandatory)
   * Payment Amount (mandatory)
-* Remittance Information (optional, repeats)
+* Remittance Information (optional, mandatory if Remittance information found, repeats)
   * Remittance Advice Identifier (mandatory)
   * Remittance Advice Type (mandatory)
   * Remittance Advice Date (mandatory)
