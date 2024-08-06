@@ -21,6 +21,9 @@ Once a list of remittances has been returned via one of the previous search mech
 #### Search Parameter Formats
 For all of the use cases, the incoming parameters are specified as a FHIR Parameters resource.  The outgoing information for the three Search operations are also specified as a FHIR Parameters resource.  The Download Remittance outgoing information is a FHIR DocumentReference instance with the remittance specified in the DocumentReference.content.attachment element as encoded binary data.
 
+#### Search Timeframes
+The time from when a remittance was returned to when you can retrieve it via a search using this API is payer-specific.  Payers **SHALL** provide the timeframe of searches.
+
 {% raw %}
 <blockquote class="stu-note">
 <p>
@@ -40,9 +43,10 @@ This search is used to find remittances associated with a previous claim submiss
 * Payer ID (optional)
 * Payer Name (optional)
 * Claim Information (mandatory)
-  * Provider Claim ID (mandatory)
+  * Provider Claim ID (mandatory) - also known as Patient Account Number
   * Provider ID (optional)
   * Payer Claim ID (optional)
+  * Claim Charge Amount (optional)
 
 #### Output
 * Provider TIN (mandatory)
@@ -54,7 +58,7 @@ This search is used to find remittances associated with a previous claim submiss
   * Patient Date of Birth (mandatory)
   * Patient First Name (mandatory)
   * Patient Last Name (mandatory)
-* Claim Information (mandatory)
+* Claim Information (mandatory, repeats)
   * Provider Claim ID (mandatory)
   * Claim Received Date (mandatory)
   * Provider ID (mandatory)
@@ -81,6 +85,8 @@ This search is used to find remittances associated with a patient.  The payer wi
 * Patient Information (mandatory)
   * Patient ID (mandatory)
   * Patient Date of Birth (mandatory)
+  * Patient First Name (optional)
+  * Patient Last Name (optional)
 
 #### Output
 * Provider TIN (mandatory)
@@ -92,7 +98,7 @@ This search is used to find remittances associated with a patient.  The payer wi
   * Patient Date of Birth (mandatory)
   * Patient First Name (mandatory)
   * Patient Last Name (mandatory)
-* Claim Information (mandatory)
+* Claim Information (mandatory, repeats)
   * Provider Claim ID (mandatory)
   * Claim Received Date (mandatory)
   * Provider ID (mandatory)
@@ -121,6 +127,8 @@ This search is used to find remittances associated with a received payment.  The
     * Payment Amount Low
     * Payment Amount High
   * Payment Number (mandatory)
+
+NOTE: Due to the format of payment numbers, specifically cheques where they may be many leading zeroes, only the significant numbers need to be specified and payers **SHALL** search for these using a wild card search.  eg. 0000000123 can be specified as 123.
 
 #### Output
 * Provider TIN (mandatory)
