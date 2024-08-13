@@ -37,6 +37,9 @@ If the set of input parameters results in no results found, then the output Para
 
 
 ### Search for Remittance by Claim
+
+!["Silent" Claim](silent_claim.png "Silent Claim"){:style="float: none;}
+
 This search is used to find remittances associated with a previous claim submission.  This API does not provide any means to return a claim status.  As well, only remittances for adjudicated claims will be returned.  The payer will search for the claim given the passed-in search parameters and find remittances associated with that claim.  The remittance information is returned along with claim information that can be used by the provider to verify the proper claim was retrieved.  Any of the returned remittance identifiers can then be used in the Download Remittance operation.
 
 #### Input
@@ -117,6 +120,9 @@ This search is used to find remittances associated with a patient.  The payer wi
   * Remittance Advice File Size (mandatory)
 
 ### Search for Remittance by Payment
+
+!["Lonely" Payment](lonely_payment.png "Lonely Payment"){:style="float: none;}
+
 This search is used to find remittances associated with a received payment.  The payer will search for the payment given the passed-in search parameters and find remittances associated with that payment.  The remittance information is returned along with claim and payment information that can be used by the provider to verify the proper payment was retrieved.  Any of the returned remittance identifiers can then be used in the Download Remittance operation.
 
 #### Input
