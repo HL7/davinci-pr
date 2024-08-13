@@ -13,20 +13,7 @@ Usage: #definition
 * instance = false
 * inputProfile = Canonical(SearchByClaimParameters)
 * outputProfile = Canonical(SearchResultParameters)
-* parameter[+]
-  * name = #TIN
-  * use = #in
-  * min = 1
-  * max = "1"
-  * documentation = "Medical Group / Billing Provider / Payee TIN"
-  * type = #string
-* parameter[+]
-  * name = #DateOfService
-  * use = #in
-  * min = 0
-  * max = "1"
-  * documentation = "Date of Service"
-  * type = #Period
+* insert IncomingSearchParameters
 * parameter[+]
   * name = #PatientID
   * use = #in
@@ -45,7 +32,7 @@ Usage: #definition
     * use = #in
     * min = 1
     * max = "1"
-    * documentation = "Provider generated Claim ID"
+    * documentation = "Provider generated Claim ID (also known as Patient Account Number)"
     * type = #string
   * part[+]
     * name = #ProviderID
@@ -61,22 +48,15 @@ Usage: #definition
     * max = "1"
     * documentation = "Payer Generated Claim ID (DCN or ICN)"
     * type = #string
-* parameter[+]
-  * name = #PayerID
-  * use = #in
-  * min = 0
-  * max = "1"
-  * documentation = "Payer Identifer"
-  * type = #string
-* parameter[+]
-  * name = #PayerName
-  * use = #in
-  * min = 0
-  * max = "1"
-  * documentation = "Payer Name"
-  * type = #string
-* insert OutgoingRemittanceParameters
+  * part[+]
+    * name = #ClaimChargeAmount
+    * use = #in
+    * min = 0
+    * max = "1"
+    * documentation = "Claim Charge Amount"
+    * type = #Money
 * insert OutgoingSearchParameters
+* insert OutgoingClaimParameters
 
 Profile: SearchByClaimParameters
 Parent: Parameters
@@ -88,7 +68,7 @@ Description: "A profile of Parameters that indicate the incoming parameters for 
 * parameter ^slicing.discriminator.path = "name"
 * parameter ^slicing.rules = #open
 * parameter ^slicing.description = "Slice parameters based on the name"
-* parameter contains TIN 1..1 and DateOfService 0..1 and PatientID 0..1 and Claim 1..1 and PayerID 0..1 and PayerName 0..1
+* parameter contains TIN 1..1 and DateOfService 0..1 and PatientID 0..1 and PayerID 0..1 and PayerName 0..1 and Claim 1..1
 * parameter[TIN]
   * name = "TIN"
   * value[x] 1..1
@@ -101,14 +81,22 @@ Description: "A profile of Parameters that indicate the incoming parameters for 
   * name = "PatientID"
   * value[x] 1..1
   * value[x] only string
+* parameter[PayerID]
+  * name = "PayerID"
+  * value[x] 0..1
+  * value[x] only string
+* parameter[PayerName]
+  * name = "PayerName"
+  * value[x] 0..1
+  * value[x] only string
 * parameter[Claim]
   * name = "Claim"
-  * part 1..3
+  * part 1..4
   * part ^slicing.discriminator.type = #value
   * part ^slicing.discriminator.path = "name"
   * part ^slicing.rules = #open
   * part ^slicing.description = "Slice Claim parameter parts based on the name"
-  * part contains ProviderClaimID 1..1 and ProviderID 0..1 and PayerClaimID 0..1
+  * part contains ProviderClaimID 1..1 and ProviderID 0..1 and PayerClaimID 0..1 and ClaimChargeAmount 0..1
   * part[ProviderClaimID]
     * name = "ProviderClaimID"
     * value[x] 1..1
@@ -121,42 +109,38 @@ Description: "A profile of Parameters that indicate the incoming parameters for 
     * name = "PayerClaimID"
     * value[x] 1..1
     * value[x] only string
-* parameter[PayerID]
-  * name = "PayerID"
-  * value[x] 0..1
-  * value[x] only string
-* parameter[PayerName]
-  * name = "PayerName"
-  * value[x] 0..1
-  * value[x] only string
+  * part[ClaimChargeAmount]
+    * name = "ClaimChargeAmount"
+    * value[x] 1..1
+    * value[x] only Money
 
 Profile: SearchResultParameters
 Parent: Parameters
 Id: searchResultParameters
 Title: "Search Result Outgoing Parameters"
 Description: "A profile of Parameters that indicate the result paramaters of searching for a remittance by claim or patient."
-* parameter 4..*
+* parameter 0..*
 * parameter ^slicing.discriminator.type = #value
 * parameter ^slicing.discriminator.path = "name"
 * parameter ^slicing.rules = #open
 * parameter ^slicing.description = "Slice parameters based on the name"
-* parameter contains TIN 1..1 and DateOfService 1..1 and Claim 1..1 and Payer 1..1 and Patient 1..1 and Payment 0..1 and Remittance 0..*
+* parameter contains TIN 0..1 and Claim 0..* and Payer 0..1 and Patient 0..1 and Remittance 0..*
 * parameter[TIN]
   * name = "TIN"
   * value[x] 1..1
   * value[x] only string
-* parameter[DateOfService]
-  * name = "DateOfService"
-  * value[x] 1..1
-  * value[x] only Period
 * parameter[Claim]
   * name = #Claim
-  * part 4..4
+  * part 4..5
   * part ^slicing.discriminator.type = #value
   * part ^slicing.discriminator.path = "name"
   * part ^slicing.rules = #open
   * part ^slicing.description = "Slice Claim parameter parts based on the name"
-  * part contains ProviderClaimID 1..1 and ClaimReceivedDate 1..1 and ProviderID 1..1 and PayerClaimID 1..1
+  * part contains ProviderClaimID 1..1 and ClaimReceivedDate 1..1 and ProviderID 1..1 and PayerClaimID 1..1 and PaymentInfo 0..1
+  * part[PayerClaimID]
+    * name = "PayerClaimID"
+    * value[x] 1..1
+    * value[x] only string
   * part[ProviderClaimID]
     * name = "ProviderClaimID"
     * value[x] 1..1
@@ -169,10 +153,26 @@ Description: "A profile of Parameters that indicate the result paramaters of sea
     * name = "ProviderID"
     * value[x] 1..1
     * value[x] only string
-  * part[PayerClaimID]
-    * name = "PayerClaimID"
-    * value[x] 1..1
-    * value[x] only string
+  * part[PaymentInfo]
+    * name = "Payment"
+    * part 3..3
+    * part ^slicing.discriminator.type = #value
+    * part ^slicing.discriminator.path = "name"
+    * part ^slicing.rules = #open
+    * part ^slicing.description = "Slice Payment parameter parts based on the name"
+    * part contains PaymentDate 1..1 and PaymentNumber 1..1 and PaymentAmount 1..1
+    * part[PaymentDate]
+      * name = "PaymentDate"
+      * value[x] 1..1
+      * value[x] only date
+    * part[PaymentNumber]
+      * name = "PaymentNumber"
+      * value[x] 1..1
+      * value[x] only string
+    * part[PaymentAmount]
+      * name = "PaymentAmount"
+      * value[x] 1..1
+      * value[x] only Money
 * parameter[Payer]
   * name = "Payer"
   * part 2..2
@@ -213,26 +213,6 @@ Description: "A profile of Parameters that indicate the result paramaters of sea
     * name = "PatientLastName"
     * value[x] 1..1
     * value[x] only string
-* parameter[Payment]
-  * name = "Payment"
-  * part 3..3
-  * part ^slicing.discriminator.type = #value
-  * part ^slicing.discriminator.path = "name"
-  * part ^slicing.rules = #open
-  * part ^slicing.description = "Slice Payment parameter parts based on the name"
-  * part contains PaymentDate 1..1 and PaymentNumber 1..1 and PaymentAmount 1..1
-  * part[PaymentDate]
-    * name = "PaymentDate"
-    * value[x] 1..1
-    * value[x] only date
-  * part[PaymentNumber]
-    * name = "PaymentNumber"
-    * value[x] 1..1
-    * value[x] only string
-  * part[PaymentAmount]
-    * name = "PaymentAmount"
-    * value[x] 1..1
-    * value[x] only Money
 * parameter[Remittance]
   * name = "Remittance"
   * part 4..4
@@ -260,18 +240,49 @@ Description: "A profile of Parameters that indicate the result paramaters of sea
     * value[x] only integer
 
 
-RuleSet: OutgoingRemittanceParameters
+RuleSet: IncomingSearchParameters
+* parameter[+]
+  * name = #TIN
+  * use = #in
+  * min = 1
+  * max = "1"
+  * documentation = "Medical Group / Billing Provider / Payee TIN"
+  * type = #string
+* parameter[+]
+  * name = #DateOfService
+  * use = #in
+  * min = 0
+  * max = "1"
+  * documentation = "Date of Service"
+  * type = #Period
+* parameter[+]
+  * name = #PayerID
+  * use = #in
+  * min = 0
+  * max = "1"
+  * documentation = "Payer Identifer"
+  * type = #string
+* parameter[+]
+  * name = #PayerName
+  * use = #in
+  * min = 0
+  * max = "1"
+  * documentation = "Payer Name"
+  * type = #string
+
+
+RuleSet: OutgoingSearchParameters
 * parameter[+]
   * name = #TIN
   * use = #out
-  * min = 1
+  * min = 0
   * max = "1"
   * documentation = "Medical Group / Billing Provider / Payee TIN"
   * type = #string
 * parameter[+]
   * name = #Payer
   * use = #out
-  * min = 1
+  * min = 0
   * max = "1"
   * documentation = "Details of payer information."
   * part[+]
@@ -288,33 +299,6 @@ RuleSet: OutgoingRemittanceParameters
     * max = "1"
     * documentation = "Payer Name"
     * type = #string
-* parameter[+]
-  * name = #Payment
-  * use = #out
-  * min = 0
-  * max = "1"
-  * documentation = "Details of adjudicated payment."
-  * part[+]
-    * name = #PaymentDate
-    * use = #out
-    * min = 1
-    * max = "1"
-    * documentation = "Payment Date"
-    * type = #date
-  * part[+]
-    * name = #PaymentNumber
-    * use = #out
-    * min = 1
-    * max = "1"
-    * documentation = "Payment Number"
-    * type = #string
-  * part[+]
-    * name = #PaymentAmount
-    * use = #out
-    * min = 1
-    * max = "1"
-    * documentation = "Payment Amount"
-    * type = #Money
 * parameter[+]
   * name = #Remittance
   * use = #out
@@ -353,20 +337,20 @@ RuleSet: OutgoingRemittanceParameters
     * documentation = "Remittance Advice File Size"
     * type = #integer
 
-RuleSet: OutgoingSearchParameters
-* parameter[+]
-  * name = #DateOfService
-  * use = #out
-  * min = 1
-  * max = "1"
-  * documentation = "Date of Service"
-  * type = #Period
+RuleSet: OutgoingClaimParameters
 * parameter[+]
   * name = #Claim
   * use = #out
-  * min = 1
-  * max = "1"
+  * min = 0
+  * max = "*"
   * documentation = "Details to verify correct claim found."
+  * part[+]
+    * name = #PayerClaimID
+    * use = #out
+    * min = 1
+    * max = "1"
+    * documentation = "Payer Generated Claim ID (DCN or ICN)"
+    * type = #string
   * part[+]
     * name = #ProviderClaimID
     * use = #out
@@ -389,12 +373,7 @@ RuleSet: OutgoingSearchParameters
     * documentation = "NPI or Payer Assigned Provider Identifier"
     * type = #string
   * part[+]
-    * name = #PayerClaimID
-    * use = #out
-    * min = 1
-    * max = "1"
-    * documentation = "Payer Generated Claim ID (DCN or ICN)"
-    * type = #string
+    * insert OutgoingPaymentParameters
 * parameter[+]
   * name = #Patient
   * use = #out
@@ -430,6 +409,34 @@ RuleSet: OutgoingSearchParameters
     * documentation = "Patient Last Name"
     * type = #string
 
+RuleSet: OutgoingPaymentParameters
+* name = #Payment
+* use = #out
+* min = 0
+* max = "1"
+* documentation = "Details of adjudicated payment."
+* part[+]
+  * name = #PaymentDate
+  * use = #out
+  * min = 1
+  * max = "1"
+  * documentation = "Payment Date"
+  * type = #date
+* part[+]
+  * name = #PaymentNumber
+  * use = #out
+  * min = 1
+  * max = "1"
+  * documentation = "Payment Number"
+  * type = #string
+* part[+]
+  * name = #PaymentAmount
+  * use = #out
+  * min = 1
+  * max = "1"
+  * documentation = "Payment Amount"
+  * type = #Money
+
 Instance: ExampleSearchByClaim
 InstanceOf: SearchByClaimParameters
 Description: "An example of searching for remittances by claim."
@@ -447,9 +454,6 @@ Instance: ExampleSearchResult
 InstanceOf: SearchResultParameters
 Description: "An example of a result for searching for a remittance."
 * parameter[TIN].valueString = "123456"
-* parameter[DateOfService].valuePeriod
-  * start = 2024-01-01
-  * end = 2024-01-31
 * parameter[Payer]
   * part[PayerID].valueString = "54321"
   * part[PayerName].valueString = "Acme Payment Inc"
@@ -458,17 +462,17 @@ Description: "An example of a result for searching for a remittance."
   * part[ClaimReceivedDate].valueDate = 2024-06-01
   * part[ProviderID].valueString = "23456"
   * part[PayerClaimID].valueString = "34567"
+  * part[PaymentInfo]
+    * part[PaymentDate].valueDate = 2024-06-07
+    * part[PaymentNumber].valueString = "11111"
+    * part[PaymentAmount].valueMoney
+      * value = 123.45
+      * currency = urn:iso:std:iso:4217#CAD
 * parameter[Patient]
   * part[DateOfBirth].valueDate = 1970-11-27
   * part[PatientID].valueString = "23456"
   * part[PatientFirstName].valueString = "Adam"
   * part[PatientLastName].valueString = "Patient"
-* parameter[Payment]
-  * part[PaymentDate].valueDate = 2024-06-07
-  * part[PaymentNumber].valueString = "11111"
-  * part[PaymentAmount].valueMoney
-    * value = 123.45
-    * currency = urn:iso:std:iso:4217#CAD
 * parameter[Remittance]
   * part[RemittanceAdviceIdentifier].valueString = "99999"
   * part[RemittanceAdviceType].valueCode = RemittanceAdviceType#835

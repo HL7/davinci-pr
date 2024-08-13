@@ -13,26 +13,20 @@ Usage: #definition
 * instance = false
 * inputProfile = Canonical(SearchByPatientParameters)
 * outputProfile = Canonical(SearchResultParameters)
-* parameter[+]
-  * name = #TIN
-  * use = #in
-  * min = 1
-  * max = "1"
-  * documentation = "Medical Group / Billing Provider / Payee TIN"
-  * type = #string
-* parameter[+]
-  * name = #DateOfService
-  * use = #in
-  * min = 0
-  * max = "1"
-  * documentation = "Date of Service"
-  * type = #Period
+* insert IncomingSearchParameters
 * parameter[+]
   * name = #Patient
   * use = #in
   * min = 1
   * max = "1"
   * documentation = "Information about the patient being searched for."
+  * part[+]
+    * name = #PatientID
+    * use = #in
+    * min = 1
+    * max = "1"
+    * documentation = "Patient Member (or Subscriber) Insurance ID"
+    * type = #string
   * part[+]
     * name = #DateOfBirth
     * use = #in
@@ -41,28 +35,21 @@ Usage: #definition
     * documentation = "Patient date of birth"
     * type = #date
   * part[+]
-    * name = #PatientID
+    * name = #FirstName
     * use = #in
-    * min = 1
+    * min = 0
     * max = "1"
-    * documentation = "Patient Member (or Subscriber) Insurance ID"
+    * documentation = "Patient First Name"
     * type = #string
-* parameter[+]
-  * name = #PayerID
-  * use = #in
-  * min = 0
-  * max = "1"
-  * documentation = "Payer Identifer"
-  * type = #string
-* parameter[+]
-  * name = #PayerName
-  * use = #in
-  * min = 0
-  * max = "1"
-  * documentation = "Payer Name"
-  * type = #string
-* insert OutgoingRemittanceParameters
+  * part[+]
+    * name = #LastName
+    * use = #in
+    * min = 0
+    * max = "1"
+    * documentation = "Patient Last Name"
+    * type = #string
 * insert OutgoingSearchParameters
+* insert OutgoingClaimParameters
 
 Profile: SearchByPatientParameters
 Parent: Parameters
@@ -74,7 +61,7 @@ Description: "A profiloe of Parameters that indicate the incoming parameters for
 * parameter ^slicing.discriminator.path = "name"
 * parameter ^slicing.rules = #open
 * parameter ^slicing.description = "Slice parameters based on the name"
-* parameter contains TIN 1..1 and DateOfService 0..1 and Patient 1..1 and PayerID 0..1 and PayerName 0..1
+* parameter contains TIN 1..1 and DateOfService 0..1 and PayerID 0..1 and PayerName 0..1 and Patient 1..1
 
 * parameter[TIN]
   * name = "TIN"
@@ -94,12 +81,12 @@ Description: "A profiloe of Parameters that indicate the incoming parameters for
   * value[x] only string
 * parameter[Patient]
   * name = "Patient"
-  * part 2..2
+  * part 2..4
   * part ^slicing.discriminator.type = #value
   * part ^slicing.discriminator.path = "name"
   * part ^slicing.rules = #open
   * part ^slicing.description = "Slice Claim parameter parts based on the name"
-  * part contains PatientID 1..1 and DateOfBirth 1..1
+  * part contains PatientID 1..1 and DateOfBirth 1..1 and FirstName 0..1 and LastName 0..1
   * part[PatientID]
     * name = "PatientID"
     * value[x] 1..1
@@ -108,6 +95,15 @@ Description: "A profiloe of Parameters that indicate the incoming parameters for
     * name = "DateOfBirth"
     * value[x] 1..1
     * value[x] only date
+  * part[FirstName]
+    * name = "FirstName"
+    * value[x] 1..1
+    * value[x] only string
+  * part[LastName]
+    * name = "LastName"
+    * value[x] 1..1
+    * value[x] only string
+	
 
 Instance: ExampleSearchByPatient
 InstanceOf: SearchByPatientParameters
