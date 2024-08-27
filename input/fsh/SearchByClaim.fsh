@@ -131,12 +131,12 @@ Description: "A profile of Parameters that indicate the result paramaters of sea
   * value[x] only string
 * parameter[Claim]
   * name = #Claim
-  * part 4..5
+  * part 4..*
   * part ^slicing.discriminator.type = #value
   * part ^slicing.discriminator.path = "name"
   * part ^slicing.rules = #open
   * part ^slicing.description = "Slice Claim parameter parts based on the name"
-  * part contains ProviderClaimID 1..1 and ClaimReceivedDate 1..1 and ProviderID 1..1 and PayerClaimID 1..1 and PaymentInfo 0..1
+  * part contains ProviderClaimID 1..1 and ClaimReceivedDate 1..1 and ProviderID 1..1 and PayerClaimID 1..1 and PaymentInfo 0..*
   * part[PayerClaimID]
     * name = "PayerClaimID"
     * value[x] 1..1
@@ -413,7 +413,7 @@ RuleSet: OutgoingPaymentParameters
 * name = #Payment
 * use = #out
 * min = 0
-* max = "1"
+* max = "*"
 * documentation = "Details of adjudicated payment."
 * part[+]
   * name = #PaymentDate
