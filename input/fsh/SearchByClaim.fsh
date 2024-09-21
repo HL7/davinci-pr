@@ -124,7 +124,7 @@ Description: "A profile of Parameters that indicate the result paramaters of sea
 * parameter ^slicing.discriminator.path = "name"
 * parameter ^slicing.rules = #open
 * parameter ^slicing.description = "Slice parameters based on the name"
-* parameter contains TIN 0..1 and Claim 0..* and Payer 0..1 and Patient 0..1 and Remittance 0..*
+* parameter contains TIN 0..1 and Claim 0..* and Payer 0..1 and Patient 0..1
 * parameter[TIN]
   * name = "TIN"
   * value[x] 1..1
@@ -155,12 +155,12 @@ Description: "A profile of Parameters that indicate the result paramaters of sea
     * value[x] only string
   * part[PaymentInfo]
     * name = "Payment"
-    * part 3..3
+    * part 4..4
     * part ^slicing.discriminator.type = #value
     * part ^slicing.discriminator.path = "name"
     * part ^slicing.rules = #open
     * part ^slicing.description = "Slice Payment parameter parts based on the name"
-    * part contains PaymentDate 1..1 and PaymentNumber 1..1 and PaymentAmount 1..1
+    * part contains PaymentDate 1..1 and PaymentNumber 1..1 and PaymentAmount 1..1 and Remittance 1..1
     * part[PaymentDate]
       * name = "PaymentDate"
       * value[x] 1..1
@@ -173,6 +173,31 @@ Description: "A profile of Parameters that indicate the result paramaters of sea
       * name = "PaymentAmount"
       * value[x] 1..1
       * value[x] only Money
+    * part[Remittance]
+      * name = "Remittance"
+      * part 4..4
+      * part ^slicing.discriminator.type = #value
+      * part ^slicing.discriminator.path = "name"
+      * part ^slicing.rules = #open
+      * part ^slicing.description = "Slice Remittance parameter parts based on the name"
+      * part contains RemittanceAdviceIdentifier 1..1 and RemittanceAdviceType 1..1 and RemittanceAdviceDate 1..1 and RemittanceAdviceFileSize 1..1
+      * part[RemittanceAdviceIdentifier]
+        * name = "RemittanceAdviceIdentifier"
+        * value[x] 1..1
+        * value[x] only string
+      * part[RemittanceAdviceType]
+        * name = "RemittanceAdviceType"
+        * value[x] 1..1
+        * value[x] only code
+        * valueCode from RemittanceAdviceType (required)
+      * part[RemittanceAdviceDate]
+        * name = "RemittanceAdviceDate"
+        * value[x] 1..1
+        * value[x] only date
+      * part[RemittanceAdviceFileSize]
+        * name = "RemittanceAdviceFileSize"
+        * value[x] 1..1
+        * value[x] only integer
 * parameter[Payer]
   * name = "Payer"
   * part 2..2
@@ -213,31 +238,6 @@ Description: "A profile of Parameters that indicate the result paramaters of sea
     * name = "PatientLastName"
     * value[x] 1..1
     * value[x] only string
-* parameter[Remittance]
-  * name = "Remittance"
-  * part 4..4
-  * part ^slicing.discriminator.type = #value
-  * part ^slicing.discriminator.path = "name"
-  * part ^slicing.rules = #open
-  * part ^slicing.description = "Slice Remittance parameter parts based on the name"
-  * part contains RemittanceAdviceIdentifier 1..1 and RemittanceAdviceType 1..1 and RemittanceAdviceDate 1..1 and RemittanceAdviceFileSize 1..1
-  * part[RemittanceAdviceIdentifier]
-    * name = "RemittanceAdviceIdentifier"
-    * value[x] 1..1
-    * value[x] only string
-  * part[RemittanceAdviceType]
-    * name = "RemittanceAdviceType"
-    * value[x] 1..1
-    * value[x] only code
-    * valueCode from RemittanceAdviceType (required)
-  * part[RemittanceAdviceDate]
-    * name = "RemittanceAdviceDate"
-    * value[x] 1..1
-    * value[x] only date
-  * part[RemittanceAdviceFileSize]
-    * name = "RemittanceAdviceFileSize"
-    * value[x] 1..1
-    * value[x] only integer
 
 
 RuleSet: IncomingSearchParameters
@@ -299,7 +299,9 @@ RuleSet: OutgoingSearchParameters
     * max = "1"
     * documentation = "Payer Name"
     * type = #string
-* parameter[+]
+
+RuleSet: OutgoingRemittanceParameters
+* part[+]
   * name = #Remittance
   * use = #out
   * min = 0
@@ -336,6 +338,7 @@ RuleSet: OutgoingSearchParameters
     * max = "1"
     * documentation = "Remittance Advice File Size"
     * type = #integer
+
 
 RuleSet: OutgoingClaimParameters
 * parameter[+]
@@ -436,6 +439,7 @@ RuleSet: OutgoingPaymentParameters
   * max = "1"
   * documentation = "Payment Amount"
   * type = #Money
+* insert OutgoingRemittanceParameters
 
 Instance: ExampleSearchByClaim
 InstanceOf: SearchByClaimParameters
@@ -468,13 +472,13 @@ Description: "An example of a result for searching for a remittance."
     * part[PaymentAmount].valueMoney
       * value = 123.45
       * currency = urn:iso:std:iso:4217#CAD
+    * part[Remittance]
+      * part[RemittanceAdviceIdentifier].valueString = "99999"
+      * part[RemittanceAdviceType].valueCode = RemittanceAdviceType#835
+      * part[RemittanceAdviceDate].valueDate = 2024-06-07
+      * part[RemittanceAdviceFileSize].valueInteger = 123456
 * parameter[Patient]
   * part[DateOfBirth].valueDate = 1970-11-27
   * part[PatientID].valueString = "23456"
   * part[PatientFirstName].valueString = "Adam"
   * part[PatientLastName].valueString = "Patient"
-* parameter[Remittance]
-  * part[RemittanceAdviceIdentifier].valueString = "99999"
-  * part[RemittanceAdviceType].valueCode = RemittanceAdviceType#835
-  * part[RemittanceAdviceDate].valueDate = 2024-06-07
-  * part[RemittanceAdviceFileSize].valueInteger = 123456

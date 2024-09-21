@@ -128,7 +128,7 @@ Description: "A profile of Parameters that indicate the result paramaters of sea
 * parameter ^slicing.discriminator.path = "name"
 * parameter ^slicing.rules = #open
 * parameter ^slicing.description = "Slice parameters based on the name"
-* parameter contains TIN 1..1 and Payer 1..1 and Payment 0..1 and Remittance 0..*
+* parameter contains TIN 1..1 and Payer 1..1 and Payment 0..1
 * parameter[TIN]
   * name = "TIN"
   * value[x] 1..1
@@ -151,12 +151,12 @@ Description: "A profile of Parameters that indicate the result paramaters of sea
     * value[x] only string
 * parameter[Payment]
   * name = "Payment"
-  * part 3..3
+  * part 4..4
   * part ^slicing.discriminator.type = #value
   * part ^slicing.discriminator.path = "name"
   * part ^slicing.rules = #open
   * part ^slicing.description = "Slice Payment parameter parts based on the name"
-  * part contains PaymentIssueDate 1..1 and PaymentNumber 1..1 and PaymentAmount 1..1
+  * part contains PaymentIssueDate 1..1 and PaymentNumber 1..1 and PaymentAmount 1..1 and Remittance 1..1
   * part[PaymentIssueDate]
     * name = "PaymentIssueDate"
     * value[x] 1..1
@@ -169,31 +169,31 @@ Description: "A profile of Parameters that indicate the result paramaters of sea
     * name = "PaymentAmount"
     * value[x] 1..1
     * value[x] only Money
-* parameter[Remittance]
-  * name = "Remittance"
-  * part 4..4
-  * part ^slicing.discriminator.type = #value
-  * part ^slicing.discriminator.path = "name"
-  * part ^slicing.rules = #open
-  * part ^slicing.description = "Slice Remittance parameter parts based on the name"
-  * part contains RemittanceAdviceIdentifier 1..1 and RemittanceAdviceType 1..1 and RemittanceAdviceDate 1..1 and RemittanceAdviceFileSize 1..1
-  * part[RemittanceAdviceIdentifier]
-    * name = "RemittanceAdviceIdentifier"
-    * value[x] 1..1
-    * value[x] only string
-  * part[RemittanceAdviceType]
-    * name = "RemittanceAdviceType"
-    * value[x] 1..1
-    * value[x] only code
-    * valueCode from RemittanceAdviceType (required)
-  * part[RemittanceAdviceDate]
-    * name = "RemittanceAdviceDate"
-    * value[x] 1..1
-    * value[x] only date
-  * part[RemittanceAdviceFileSize]
-    * name = "RemittanceAdviceFileSize"
-    * value[x] 1..1
-    * value[x] only integer
+  * part[Remittance]
+    * name = "Remittance"
+    * part 4..4
+    * part ^slicing.discriminator.type = #value
+    * part ^slicing.discriminator.path = "name"
+    * part ^slicing.rules = #open
+    * part ^slicing.description = "Slice Remittance parameter parts based on the name"
+    * part contains RemittanceAdviceIdentifier 1..1 and RemittanceAdviceType 1..1 and RemittanceAdviceDate 1..1 and RemittanceAdviceFileSize 1..1
+    * part[RemittanceAdviceIdentifier]
+      * name = "RemittanceAdviceIdentifier"
+      * value[x] 1..1
+      * value[x] only string
+    * part[RemittanceAdviceType]
+      * name = "RemittanceAdviceType"
+      * value[x] 1..1
+      * value[x] only code
+      * valueCode from RemittanceAdviceType (required)
+    * part[RemittanceAdviceDate]
+      * name = "RemittanceAdviceDate"
+      * value[x] 1..1
+      * value[x] only date
+    * part[RemittanceAdviceFileSize]
+      * name = "RemittanceAdviceFileSize"
+      * value[x] 1..1
+      * value[x] only integer
 
 
 Instance: ExampleSearchByPayment
@@ -225,13 +225,19 @@ Description: "An example of a result for searching for a remittance."
   * part[PaymentAmount].valueMoney
     * value = 123.45
     * currency = urn:iso:std:iso:4217#CAD
-* parameter[Remittance]
-  * part[RemittanceAdviceIdentifier].valueString = "99999"
-  * part[RemittanceAdviceType].valueCode = RemittanceAdviceType#835
-  * part[RemittanceAdviceDate].valueDate = 2024-06-07
-  * part[RemittanceAdviceFileSize].valueInteger = 123456
-* parameter[Remittance][+]
-  * part[RemittanceAdviceIdentifier].valueString = "8888"
-  * part[RemittanceAdviceType].valueCode = RemittanceAdviceType#PDF
-  * part[RemittanceAdviceDate].valueDate = 2024-06-09
-  * part[RemittanceAdviceFileSize].valueInteger = 123456
+  * part[Remittance]
+    * part[RemittanceAdviceIdentifier].valueString = "99999"
+    * part[RemittanceAdviceType].valueCode = RemittanceAdviceType#835
+    * part[RemittanceAdviceDate].valueDate = 2024-06-07
+    * part[RemittanceAdviceFileSize].valueInteger = 123456
+* parameter[Payment]
+  * part[PaymentIssueDate].valueDate = 2024-06-07
+  * part[PaymentNumber].valueString = "88888"
+  * part[PaymentAmount].valueMoney
+    * value = 50.92
+    * currency = urn:iso:std:iso:4217#CAD
+  * part[Remittance]
+    * part[RemittanceAdviceIdentifier].valueString = "8888"
+    * part[RemittanceAdviceType].valueCode = RemittanceAdviceType#PDF
+    * part[RemittanceAdviceDate].valueDate = 2024-06-09
+    * part[RemittanceAdviceFileSize].valueInteger = 123456
