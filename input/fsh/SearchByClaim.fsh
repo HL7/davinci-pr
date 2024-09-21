@@ -154,7 +154,7 @@ Description: "A profile of Parameters that indicate the result paramaters of sea
     * value[x] 1..1
     * value[x] only string
   * part[PaymentInfo]
-    * name = "Payment"
+    * name = "PaymentInfo"
     * part 4..4
     * part ^slicing.discriminator.type = #value
     * part ^slicing.discriminator.path = "name"
@@ -413,7 +413,7 @@ RuleSet: OutgoingClaimParameters
     * type = #string
 
 RuleSet: OutgoingPaymentParameters
-* name = #Payment
+* name = #PaymentInfo
 * use = #out
 * min = 0
 * max = "*"

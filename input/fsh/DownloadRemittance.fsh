@@ -36,7 +36,7 @@ Usage: #definition
   * min = 1
   * max = "1"
   * documentation = "Remittance Advice file sent as a binary and compressed in a zip format."
-  * type = #DocumentReference
+  * type = #Binary
   * targetProfile = Canonical(RemittanceAdviceDocument)
 
 Profile: DownloadRemittanceParameters
@@ -67,18 +67,16 @@ Description: "An example of specifying a remittance to download."
 * parameter[RemittanceAdviceType].valueCode = RemittanceAdviceType#835
 
 Profile: RemittanceAdviceDocument
-Parent: DocumentReference
+Parent: Binary
 Id: remittanceAdviceDocument
 Title: "Remittance Advice Document"
-Description: "A profile of DocumentReference that provides the details of the remittance advice being returned."
-* status = #current
-* content 1..1
-  * attachment 1..1
-    * contentType = #application/zip
-    * data 1..1
+Description: "A profile of Binary that wraps the remittance advice being returned."
+* contentType 1..1 MS
+* contentType from RemittanceContentType (required)
+* data 1..1 MS
 
 Instance: ExampleRemittanceAdviceDocument
 InstanceOf: RemittanceAdviceDocument
 Description: "An example of a returned remittance advice document"
-* content.attachment.contentType = #application/zip
-* content.attachment.data = "YmFzZTY0LWVuY29kZWQgemlwIGZpbGUgb2YgdGhlIG9yaWdpbmFsIGRvY3VtZW50"
+* contentType = urn:ietf:bcp:13#application/txt+gzip
+* data = "YmFzZTY0LWVuY29kZWQgemlwIGZpbGUgb2YgdGhlIG9yaWdpbmFsIGRvY3VtZW50"

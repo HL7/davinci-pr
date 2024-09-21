@@ -15,7 +15,7 @@ Usage: #definition
 * outputProfile = Canonical(SearchByPaymentResultParameters)
 * insert IncomingSearchParameters
 * parameter[+]
-  * name = #Payment
+  * name = #PaymentInfo
   * use = #in
   * min = 1
   * max = "1"
@@ -68,7 +68,7 @@ Description: "A profile of Parameters that indicate the incoming parameters for 
 * parameter ^slicing.discriminator.path = "name"
 * parameter ^slicing.rules = #open
 * parameter ^slicing.description = "Slice parameters based on the name"
-* parameter contains TIN 1..1 and DateOfService 0..1 and PayerID 0..1 and PayerName 0..1 and Payment 1..1
+* parameter contains TIN 1..1 and DateOfService 0..1 and PayerID 0..1 and PayerName 0..1 and PaymentInfo 1..1
 * parameter[TIN]
   * name = "TIN"
   * value[x] 1..1
@@ -85,8 +85,8 @@ Description: "A profile of Parameters that indicate the incoming parameters for 
   * name = "PayerName"
   * value[x] 0..1
   * value[x] only string
-* parameter[Payment]
-  * name = "Payment"
+* parameter[PaymentInfo]
+  * name = "PaymentInfo"
   * part 2..5
   * part ^slicing.discriminator.type = #value
   * part ^slicing.discriminator.path = "name"
@@ -128,7 +128,7 @@ Description: "A profile of Parameters that indicate the result paramaters of sea
 * parameter ^slicing.discriminator.path = "name"
 * parameter ^slicing.rules = #open
 * parameter ^slicing.description = "Slice parameters based on the name"
-* parameter contains TIN 1..1 and Payer 1..1 and Payment 0..1
+* parameter contains TIN 1..1 and Payer 1..1 and PaymentInfo 0..1
 * parameter[TIN]
   * name = "TIN"
   * value[x] 1..1
@@ -149,8 +149,8 @@ Description: "A profile of Parameters that indicate the result paramaters of sea
     * name = "PayerName"
     * value[x] 1..1
     * value[x] only string
-* parameter[Payment]
-  * name = "Payment"
+* parameter[PaymentInfo]
+  * name = "PaymentInfo"
   * part 4..4
   * part ^slicing.discriminator.type = #value
   * part ^slicing.discriminator.path = "name"
@@ -200,7 +200,7 @@ Instance: ExampleSearchByPayment
 InstanceOf: SearchByPaymentParameters
 Description: "An example of searching for remittances by payment."
 * parameter[TIN].valueString = "123456"
-* parameter[Payment]
+* parameter[PaymentInfo]
   * part[PaymentIssueDate].valuePeriod.start = 2024-06-07
   * part[PaymentIssueDate].valuePeriod.end = 2024-06-10
   * part[PaymentNumber].valueString = "11111"
@@ -219,7 +219,7 @@ Description: "An example of a result for searching for a remittance."
 * parameter[Payer]
   * part[PayerID].valueString = "54321"
   * part[PayerName].valueString = "Acme Payment Inc"
-* parameter[Payment]
+* parameter[PaymentInfo]
   * part[PaymentIssueDate].valueDate = 2024-06-07
   * part[PaymentNumber].valueString = "11111"
   * part[PaymentAmount].valueMoney
@@ -230,7 +230,7 @@ Description: "An example of a result for searching for a remittance."
     * part[RemittanceAdviceType].valueCode = RemittanceAdviceType#835
     * part[RemittanceAdviceDate].valueDate = 2024-06-07
     * part[RemittanceAdviceFileSize].valueInteger = 123456
-* parameter[Payment]
+* parameter[PaymentInfo]
   * part[PaymentIssueDate].valueDate = 2024-06-07
   * part[PaymentNumber].valueString = "88888"
   * part[PaymentAmount].valueMoney

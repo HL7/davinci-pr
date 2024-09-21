@@ -7,13 +7,14 @@
 <artifact id="OperationDefinition/DownloadRemittance" key="OperationDefinition-DownloadRemittance" name="Download Postable Remittance"/>
 <artifact id="StructureDefinition/downloadRemittanceParameters" key="StructureDefinition-downloadRemittanceParameters" name="Download Remittance Incoming Parameters"/>
 <artifact id="Parameters/ExampleDownloadRemittance" key="Parameters-ExampleDownloadRemittance" name="ExampleDownloadRemittance"/>
-<artifact id="DocumentReference/ExampleRemittanceAdviceDocument" key="DocumentReference-ExampleRemittanceAdviceDocument" name="ExampleRemittanceAdviceDocument"/>
+<artifact id="Binary/ExampleRemittanceAdviceDocument" key="Binary-ExampleRemittanceAdviceDocument" name="ExampleRemittanceAdviceDocument"/>
 <artifact id="Parameters/ExampleSearchByClaim" key="Parameters-ExampleSearchByClaim" name="ExampleSearchByClaim"/>
 <artifact id="Parameters/ExampleSearchByPatient" key="Parameters-ExampleSearchByPatient" name="ExampleSearchByPatient"/>
 <artifact id="Parameters/ExampleSearchByPayment" key="Parameters-ExampleSearchByPayment" name="ExampleSearchByPayment"/>
 <artifact id="Parameters/ExampleSearchPaymentResult" key="Parameters-ExampleSearchPaymentResult" name="ExampleSearchPaymentResult"/>
 <artifact id="Parameters/ExampleSearchResult" key="Parameters-ExampleSearchResult" name="ExampleSearchResult"/>
 <artifact id="CodeSystem/RemittanceAdviceType" key="CodeSystem-RemittanceAdviceType" name="Remittance Advice Code System"/>
+<artifact id="ValueSet/RemittanceContentType" key="ValueSet-RemittanceContentType" name="Remittance Advice Content Type Value Set"/>
 <artifact id="StructureDefinition/remittanceAdviceDocument" key="StructureDefinition-remittanceAdviceDocument" name="Remittance Advice Document"/>
 <artifact id="ValueSet/RemittanceAdviceType" key="ValueSet-RemittanceAdviceType" name="Remittance Advice Value Set"/>
 <artifact id="StructureDefinition/searchByClaimParameters" key="StructureDefinition-searchByClaimParameters" name="Search By Claim Incoming Parameters"/>

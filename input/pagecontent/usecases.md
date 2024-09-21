@@ -123,7 +123,7 @@ This search is used to find remittances associated with a patient.  The payer wi
 
 !["Lonely" Payment](lonely_payment.png "Lonely Payment"){:style="float: none;}
 
-This search is used to find remittances associated with a received payment.  The payer will search for the payment given the passed-in search parameters and find remittances associated with that payment.  The remittance information is returned along with claim and payment information that can be used by the provider to verify the proper payment was retrieved.  Any of the returned remittance identifiers can then be used in the Download Remittance operation.
+This search is used to find remittances associated with a received payment.  The payer will search for the payment given the passed-in search parameters and find remittances associated with that payment.  The remittance information is returned along the payment information that can be used by the provider to verify the proper payment was retrieved.  Any of the returned remittance identifiers can then be used in the Download Remittance operation.
 
 #### Input
 * Provider TIN (mandatory)
@@ -162,5 +162,5 @@ After one of the Search operations has occurred, the Download Remittance operati
 * Remittance Advice Type Hint (optional)
 
 #### Output
-The copy of the remittance advice is returned in a FHIR DocumentReference resource with the DocumentReference.content.attachment element containing the data.  Whether the remittance is returned as a 835 document or a PDF file, it is zipped and base64 encoded and returned in the attachment.data element.
+The copy of the remittance advice is returned in a FHIR Binary resource with the Binary.data element containing the data.  Whether the remittance is returned as a 835 document or a PDF file, it is gzipped and base64 encoded and returned in the data element.  The Binary.contentType element is used to indicate whether the returned remittance is a PDF file ('application/pdf+gzip') or an 835 document ('application/txt+gzip').
 
