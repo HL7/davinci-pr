@@ -74,9 +74,18 @@ Description: "A profile of Binary that wraps the remittance advice being returne
 * contentType 1..1 MS
 * contentType from RemittanceContentType (required)
 * data 1..1 MS
+* data.extension contains RemittanceIdentifier named remittanceIdentifier 1..1 MS
+
+Extension: RemittanceIdentifier
+Id: remittanceIdentifierExt
+Description: "An identifier for the remittance."
+* value[x] only string
+* ^context[+].type = #element
+* ^context[=].expression = "Binary.data"
 
 Instance: ExampleRemittanceAdviceDocument
 InstanceOf: RemittanceAdviceDocument
 Description: "An example of a returned remittance advice document"
 * contentType = urn:ietf:bcp:13#application/txt+gzip
 * data = "YmFzZTY0LWVuY29kZWQgemlwIGZpbGUgb2YgdGhlIG9yaWdpbmFsIGRvY3VtZW50"
+* data.extension[remittanceIdentifier].valueString = "A123456BCD"
