@@ -81,8 +81,13 @@ This search is used to find remittances associated with a previous claim submiss
 
 
 ### Search for Remittance by Patient
-!["Silent" Claim by Patient](silent_claim_payment.png "Silent Claim by Patient"){:style="float: none;}
+!["Silent" Claim by Patient](silent_claim_patient.png "Silent Claim by Patient"){:style="float: none;}
 This search is used to find remittances associated with a patient.  The payer will search for the patient given the passed-in search parameters and find remittances associated with that patient.  The remittance information is returned along with patient and claim information that can be used by the provider to verify the proper patient was retrieved.  Any of the returned remittance identifiers can then be used in the Download Remittance operation.
+
+<div class="warning">
+	The intent of this search is to find a missing remittance where only the patient information is known.  It is possible with this search and the parameters to retrieve a large set of remittances.  Receivers of this search SHOULD return an error if the number of remittances exceeds more than 10 remittances.
+</div>
+
 
 #### Input
 * Provider TIN (mandatory)

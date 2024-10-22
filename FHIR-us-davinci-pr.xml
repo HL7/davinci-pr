@@ -17,6 +17,7 @@
 <artifact id="ValueSet/RemittanceContentType" key="ValueSet-RemittanceContentType" name="Remittance Advice Content Type Value Set"/>
 <artifact id="StructureDefinition/remittanceAdviceDocument" key="StructureDefinition-remittanceAdviceDocument" name="Remittance Advice Document"/>
 <artifact id="ValueSet/RemittanceAdviceType" key="ValueSet-RemittanceAdviceType" name="Remittance Advice Value Set"/>
+<artifact id="StructureDefinition/remittanceIdentifierExt" key="StructureDefinition-remittanceIdentifierExt" name="RemittanceIdentifier"/>
 <artifact id="StructureDefinition/searchByClaimParameters" key="StructureDefinition-searchByClaimParameters" name="Search By Claim Incoming Parameters"/>
 <artifact id="StructureDefinition/searchByPatientParameters" key="StructureDefinition-searchByPatientParameters" name="Search By Patient Incoming Parameters"/>
 <artifact id="StructureDefinition/searchByPaymentParameters" key="StructureDefinition-searchByPaymentParameters" name="Search By Payment Incoming Parameters"/>
