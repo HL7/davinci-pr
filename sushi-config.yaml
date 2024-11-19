@@ -87,6 +87,7 @@ menu:
   Use Cases: usecases.html
   Privacy & Security: security.html
   Artifacts: artifacts.html
+  Technical: technical.html
 
 # ╭───────────────────────────Less Common Implementation Guide Properties──────────────────────────╮
 # │  Uncomment the properties below to configure additional properties on the ImplementationGuide  │
