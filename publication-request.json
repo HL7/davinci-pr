@@ -1,0 +1,9 @@
+{
+  "package-id" : "hl7.fhir.us.davinci-pr",
+  "version" : "1.0.0-ballot",
+  "path" : "http://hl7.org/fhir/us/davinci-pr/2025Jan",
+  "status" : "trial-use",
+  "sequence" : "STU 1",
+  "mode": "milestone",
+  "desc" : "This is the first balloted version of the Postable Remittance specification."
+}
