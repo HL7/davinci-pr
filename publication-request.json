@@ -9,6 +9,6 @@
   "desc" : "This is the first balloted version of the Postable Remittance specification.",
   "title": "DaVinci Postable Remittance FHIR Implementation Guide",
   "introduction": "This IG provides a FHIR API to search for and retrieve a copy of a previously issued postable remittance.",
-  "ci-build": "http://build.hl7.org/ig/HL7/davinci-pr/",
+  "ci-build": "http://build.fhir.org/ig/HL7/davinci-pr",
   "category": "financial"
 }
