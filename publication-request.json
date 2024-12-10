@@ -2,7 +2,7 @@
   "package-id" : "hl7.fhir.us.davinci-pr",
   "version" : "1.0.0-ballot",
   "path" : "http://hl7.org/fhir/us/davinci-pr/2025Jan",
-  "status" : "trial-use",
+  "status" : "ballot",
   "sequence" : "STU 1",
   "mode": "working",
   "first": true,
