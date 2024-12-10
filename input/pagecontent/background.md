@@ -10,9 +10,6 @@ The process that Da Vinci has adopted includes:
 
 Additional information about Da Vinci, its members, the use cases and the implementation guides being developed can all be found on the [HL7 website](http://www.hl7.org/about/davinci). Meeting minutes and other materials can be found on the [Da Vinci Confluence page](https://confluence.hl7.org/display/DVP).
 
-{% include burdenReduction.md %}
-
-
 ### Underlying Technologies
 This guide is based on the [HL7 FHIR]({{site.data.fhir.path}}index.html) standard.  Implementers of this specification therefore need to understand some basic information about these specifications.
 
