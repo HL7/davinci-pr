@@ -46,3 +46,37 @@ Missing remits is a prevalent and widespread issue, and the result is that provi
 ### Shared Tax Identification Numbers (TIN)
 Clinics/providers owned and employed by hospitals or health systems typically bill ambulatory claims under the same tax ID as the hospital. The hospital and their ambulatory clinics often use different EHR and revenue cycle management (RCM) systems. Many large payers will only remit to a single ERA (835) receiver/pay-to address, and bank account per Tax ID. The result is remit advice that include both hospital and ambulatory claims are remitted to the hospital EHR/RCM system or the primary receiver’s EHR/RCM system only. The workflows in place to forward remit to the ambulatory EHR/RCM vary in efficiency and automation, resulting in delayed or “lost” remit files needed by the Ambulatory EHR/RCM. Manual remit retrieval from the payer may be the only option for remit file recovery for the ambulatory EHR/RCM.
 
+### Content and Organization
+This implementation guide (and the menu for it) is organized into the following sections:
+
+* *Background* - Supporting informative pages that do not set conformance expectations
+  * [Reading this IG](background.html) points to key pages in the FHIR spec and other source specifications that must be understood in order to understand this guide
+  * [Use Cases](usecases.html) describes the intent of the implementation guide, gives examples of its use, and provides a high-level overview of expected process flow
+  * [Project and Participants](credits.html) gives a high-level overview of Da Vinci and identifies the individuals and organizations involved in developing this implementation guide
+* *Specification* - Pages that set conformance expectations
+  * [Conformance Expectations](conformance.html) defines base language and expectations for declaring conformance with the guide
+  * [Privacy, Safety, and Security](security.html) covers considerations around data access, protection, and similar concepts that apply to all implementations
+* *FHIR Artifacts*
+  * [Overview](fhirArtifacts.html) introduces and provides links to the profiles, search parameters and other FHIR artifacts used in this implementation guide
+  * [Artifacts](artifacts.html) points to the complete list of artifacts defined in this guide
+* *Base Specifications* - Quick links to the various specifications this guide derives from
+* *Support* - Links to help with use of this guide
+  * *Discussion Forum* is a place to ask questions about the guide, discuss potential issues, and search through prior discussions
+  * *Project Home* includes information about project calls, agendas, past minutes, and instructions for how to participate
+  * *Implementer Support* provides information about reference implementations, resources for testing, known errata, regulatory considerations, and practical implementation pathways
+  * *Project Dashoard* shows new and historical issues that have been logged against the specification, proposed dispositions, unapplied changes, etc.
+  * *Propose a Change* allows formal submission of requests for change to the specification.  (Consider raising on the discussion forum first.)
+  * [Downloads](downloads.html) allows download of this and other specifications, as well as other useful files
+
+### Dependencies
+
+This guide also relies on a number of parent implementation guides:
+
+{% include dependency-table-nontech.xhtml %}
+
+This implementation guide defines additional constraints and usage expectations above and beyond the information found in these base specifications.
+
+### Intellectual Property Considerations
+This implementation guide and the underlying FHIR specification are licensed as public domain under the [FHIR license](http://hl7.org/fhir/R4/license.html#license). The license page also describes rules for the use of the FHIR name and logo.
+
+{% include ip-statements.xhtml %}

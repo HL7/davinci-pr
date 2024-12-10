@@ -32,6 +32,12 @@
 <page key="NA" name="(NA)"/>
 <page key="many" name="(many)"/>
 <page key="artifacts" name="Artifacts Summary"/>
+<page key="background" name="Background"/>
+<page key="changelog" name="Changelog"/>
+<page key="conformance" name="Conformance"/>
+<page key="credits" name="Credits"/>
+<page key="downloads" name="Downloads"/>
+<page key="fhirArtifacts" name="Fhir Artifacts"/>
 <page key="index" name="Home"/>
 <page key="security" name="Security"/>
 <page key="toc" name="Table of Contents"/>

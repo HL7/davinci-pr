@@ -2,3 +2,16 @@
 
 # Vocabulary that will always live in this guide
 Most code systems defined in HL7 IGs will need to move to THO later during the process. Consider giving this code system a THO URL now (See https://confluence.hl7.org/display/TSMG/Terminology+Play+Book, and/or talk to TSMG)
+
+
+# DAVINCI - no dependency on US Core required
+DA VINCI: This IG does not include an explicit dependency on US Core 7.0.0.
+DA VINCI: This IG does not include an explicit dependency on US Core 6.1.0.
+DA VINCI: This IG does not include an explicit dependency on US Core 3.1.1.
+DA VINCI: The Base Specs menu item must have a child called US Core 7.0.0.
+DA VINCI: The Base Specs menu item must have a child called US Core 6.1.0.
+DA VINCI: The Base Specs menu item must have a child called US Core 3.1.1.
+DA VINCI: The Conformance page (conformance.html) Must Support section needs to include a link to the US-Core must-support.html page.
+
+# DAVINCI - First time being published so no tracker items yet
+DA VINCI: The Change Log page (changelog.html) does not include any Jira tracker items links for the section with title Version = 1.0.0-ballot
