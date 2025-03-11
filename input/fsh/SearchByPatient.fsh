@@ -15,12 +15,19 @@ Usage: #definition
 * outputProfile = Canonical(SearchResultParameters)
 * insert IncomingSearchParameters
 * parameter[+]
-  * name = #DateOfServicePeriod
+  * name = #ServiceStartDate
   * use = #in
   * min = 1
   * max = "1"
-  * documentation = "Date of Service Period"
-  * type = #Period
+  * documentation = "Start Date of Service"
+  * type = #date
+* parameter[+]
+  * name = #ServiceEndDate
+  * use = #in
+  * min = 1
+  * max = "1"
+  * documentation = "End Date of Service"
+  * type = #date
 * parameter[+]
   * name = #Patient
   * use = #in
@@ -62,22 +69,26 @@ Profile: SearchByPatientParameters
 Parent: Parameters
 Id: searchByPatientParameters
 Title: "Search By Patient Incoming Parameters"
-Description: "A profiloe of Parameters that indicate the incoming parameters for searching by a patient."
-* parameter 2..5
+Description: "A profile of Parameters that indicate the incoming parameters for searching by a patient."
+* parameter 2..6
 * parameter ^slicing.discriminator.type = #value
 * parameter ^slicing.discriminator.path = "name"
 * parameter ^slicing.rules = #open
 * parameter ^slicing.description = "Slice parameters based on the name"
-* parameter contains TIN 1..1 and DateOfService 1..1 and PayerID 0..1 and PayerName 0..1 and Patient 1..1
+* parameter contains TIN 1..1 and ServiceStartDate 1..1 and ServiceEndDate 1..1 and PayerID 0..1 and PayerName 0..1 and Patient 1..1
 
 * parameter[TIN]
   * name = "TIN"
   * value[x] 1..1
   * value[x] only string
-* parameter[DateOfService]
-  * name = "DateOfService"
+* parameter[ServiceStartDate]
+  * name = "ServiceStartDate"
   * value[x] 1..1
-  * value[x] only Period
+  * value[x] only date
+* parameter[ServiceEndDate]
+  * name = "ServiceEndDate"
+  * value[x] 1..1
+  * value[x] only date
 * parameter[PayerID]
   * name = "PayerID"
   * value[x] 0..1

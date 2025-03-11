@@ -15,12 +15,19 @@ Usage: #definition
 * outputProfile = Canonical(SearchResultParameters)
 * insert IncomingSearchParameters
 * parameter[+]
-  * name = #DateOfServicePeriod
+  * name = #ServiceStartDate
   * use = #in
   * min = 0
   * max = "1"
-  * documentation = "Date of Service Period"
-  * type = #Period
+  * documentation = "Start Date of Service"
+  * type = #date
+* parameter[+]
+  * name = #ServiceEndDate
+  * use = #in
+  * min = 0
+  * max = "1"
+  * documentation = "End Date of Service"
+  * type = #date
 * parameter[+]
   * name = #PatientID
   * use = #in
@@ -70,20 +77,24 @@ Parent: Parameters
 Id: searchByClaimParameters
 Title: "Search By Claim Incoming Parameters"
 Description: "A profile of Parameters that indicate the incoming parameters for searching by claim."
-* parameter 2..6
+* parameter 2..7
 * parameter ^slicing.discriminator.type = #value
 * parameter ^slicing.discriminator.path = "name"
 * parameter ^slicing.rules = #open
 * parameter ^slicing.description = "Slice parameters based on the name"
-* parameter contains TIN 1..1 and DateOfService 0..1 and PatientID 0..1 and PayerID 0..1 and PayerName 0..1 and Claim 1..1
+* parameter contains TIN 1..1 and ServiceStartDate 0..1 and ServiceEndDate 0..1 and PatientID 0..1 and PayerID 0..1 and PayerName 0..1 and Claim 1..1
 * parameter[TIN]
   * name = "TIN"
   * value[x] 1..1
   * value[x] only string
-* parameter[DateOfService]
-  * name = "DateOfService"
+* parameter[ServiceStartDate]
+  * name = "ServiceStartDate"
   * value[x] 1..1
-  * value[x] only Period
+  * value[x] only date
+* parameter[ServiceEndDate]
+  * name = "ServiceEndDate"
+  * value[x] 1..1
+  * value[x] only date
 * parameter[PatientID]
   * name = "PatientID"
   * value[x] 1..1
@@ -474,7 +485,7 @@ Description: "An example of a result for searching for a remittance."
       * currency = urn:iso:std:iso:4217#USD
     * part[Remittance]
       * part[RemittanceAdviceIdentifier].valueString = "99999"
-      * part[RemittanceAdviceType].valueCode = RemittanceAdviceType#835
+      * part[RemittanceAdviceType].valueCode = urn:ietf:bcp:13#application/EDI-X12
       * part[RemittanceAdviceDate].valueDate = 2024-06-07
       * part[RemittanceAdviceFileSize].valueInteger = 123456
 * parameter[Patient]

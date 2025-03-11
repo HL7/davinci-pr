@@ -19,7 +19,7 @@ In scenarios where remits are missing due to any reasons, providers/vendors can 
 
 There is excessive time and effort spent by payer and provider organizations to obtain missing remits.
 
-* Gaps in EDI: In a Shared TIN scenario, EDI transactions do not cover this use case since the same 835 generally are not delivered to multiple destinations.  See below for more information about the Shared TIN scenario.
+* Gaps in Electronic Data Interchange (EDI): In a Shared Tax Identification Number (TIN) scenario, EDI transactions do not cover this use case since the same 835 generally are not delivered to multiple destinations.  See below for more information about the Shared TIN scenario.
 * Portal access is complex: Provider-facing portals are the main modality used to manually retrieve missing remit. It is very difficult to use portals at scale for this work and managing access across many portals is challenging
 * Phone calls are expensive, time consuming, and some payers do not accept phone calls
 * Cybersecurity regulations: Cybersecurity regulations are difficult for billing service/vendors to manage as the landscape changes quickly. APIs present an alternative to traditional portals
@@ -44,8 +44,8 @@ There is excessive time and effort spent by payer and provider organizations to 
 ### Why does Remit Advice go missing?
 Missing remits is a prevalent and widespread issue, and the result is that providers don’t get their remits and need to track down a copy. There are many reason remits can go missing:
 
-* Shared Tax Identification Number (TIN) – i.e. when a portion of a medical group’s business is using a certain RCM vendor, and another portion of the business is using a different RCM vendor, both using the same TIN to file claims. In this scenario, remits need to be sent to two different places depending on which RCM is submitting the claim, but ERA enrollment restrictions typically only allow one remittance destination per TIN, resulting in remits getting lost. We understand there are permissioning questions tied to missing remit advice caused by shared TIN – this topic is to be expanded in question below. 
-* Provider transitioning EHR/RCMs, where the remit destination on file with payers may be tied to the old EHR/RCM, and in the process of updating to the new EHR/RCM, remits can send to the wrong place
+* Provider transitioning Electronic Health Record (EHR)/ Revenue Cycle Management (RCM) systems, where the remit destination on file with payers may be tied to the old EHR/RCM, and in the process of updating to the new EHR/RCM, remits can send to the wrong place
+* Shared TIN – i.e. when a portion of a medical group’s business is using a certain RCM vendor, and another portion of the business is using a different RCM vendor, both using the same TIN to file claims. In this scenario, remits need to be sent to two different places depending on which RCM is submitting the claim, but ERA enrollment restrictions typically only allow one remittance destination per TIN, resulting in remits getting lost. We understand there are permissioning questions tied to missing remit advice caused by shared TIN – this topic is to be expanded in question below. 
 * Payers simply returning payment without an accompanying remit
 * Crossover claims – i.e. when a payer (typically a government payer) automatically forwards the claim to the patient’s secondary insurance – a complicated and error-prone process that often creates processing issues for the secondary payer
 * Some payers don’t allow out of network providers to enroll for ERA, so when an out-of-network provider submits a claim to a payer, it can sometimes cause the 835 remits to not get returned as expected
@@ -53,7 +53,7 @@ Missing remits is a prevalent and widespread issue, and the result is that provi
 * If a remittance is sent as a paper, that can sometimes get shredded by accident or get lost in the mail
 
 ### Shared Tax Identification Numbers (TIN)
-Clinics/providers owned and employed by hospitals or health systems typically bill ambulatory claims under the same tax ID as the hospital. The hospital and their ambulatory clinics often use different EHR and revenue cycle management (RCM) systems. Many large payers will only remit to a single ERA (835) receiver/pay-to address, and bank account per Tax ID. The result is remit advice that include both hospital and ambulatory claims are remitted to the hospital EHR/RCM system or the primary receiver’s EHR/RCM system only. The workflows in place to forward remit to the ambulatory EHR/RCM vary in efficiency and automation, resulting in delayed or “lost” remit files needed by the Ambulatory EHR/RCM. Manual remit retrieval from the payer may be the only option for remit file recovery for the ambulatory EHR/RCM.
+Clinics/providers owned and employed by hospitals or health systems typically bill ambulatory claims under the same tax ID as the hospital. The hospital and their ambulatory clinics often use different EHR and RCM systems. Many large payers will only remit to a single electronic remittance advice (ERA) receiver/pay-to address, and bank account per Tax ID. The result is remit advice that include both hospital and ambulatory claims are remitted to the hospital EHR/RCM system or the primary receiver’s EHR/RCM system only. The workflows in place to forward remit to the ambulatory EHR/RCM vary in efficiency and automation, resulting in delayed or “lost” remit files needed by the Ambulatory EHR/RCM. Manual remit retrieval from the payer may be the only option for remit file recovery for the ambulatory EHR/RCM.
 
 ### Content and Organization
 This implementation guide (and the menu for it) is organized into the following sections:
