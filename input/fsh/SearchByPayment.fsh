@@ -248,7 +248,7 @@ Description: "An example of a result for searching for a remittance."
     * part[RemittanceAdviceType].valueCode = urn:ietf:bcp:13#application/EDI-X12
     * part[RemittanceAdviceDate].valueDate = 2023-11-02
     * part[RemittanceAdviceFileSize].valueInteger = 1536
-* parameter[PaymentInfo]
+* parameter[PaymentInfo][+]
   * part[PaymentIssueDate].valueDate = 2023-11-03
   * part[PaymentNumber].valueString = "A12385859"
   * part[PaymentAmount].valueMoney

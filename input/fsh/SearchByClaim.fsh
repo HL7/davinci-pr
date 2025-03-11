@@ -486,7 +486,7 @@ Description: "An example of a result for searching for a remittance."
       * part[RemittanceAdviceType].valueCode = urn:ietf:bcp:13#application/EDI-X12
       * part[RemittanceAdviceDate].valueDate = 2023-11-02
       * part[RemittanceAdviceFileSize].valueInteger = 1536
-* parameter[Claim]
+* parameter[Claim][+]
   * part[ProviderClaimID].valueString = "12345V54321"
   * part[ClaimReceivedDate].valueDate = 2023-10-04
   * part[ProviderID].valueString = "52415"
