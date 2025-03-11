@@ -9,6 +9,7 @@
 <artifact id="OperationDefinition/DownloadRemittance" key="OperationDefinition-DownloadRemittance" name="Download Postable Remittance"/>
 <artifact id="StructureDefinition/downloadRemittanceParameters" key="StructureDefinition-downloadRemittanceParameters" name="Download Remittance Incoming Parameters"/>
 <artifact id="Parameters/ExampleDownloadRemittance" key="Parameters-ExampleDownloadRemittance" name="ExampleDownloadRemittance"/>
+<artifact id="OperationOutcome/ExampleNoRemittancesFound" key="OperationOutcome-ExampleNoRemittancesFound" name="ExampleNoRemittancesFound"/>
 <artifact id="Binary/ExampleRemittanceAdviceDocument" key="Binary-ExampleRemittanceAdviceDocument" name="ExampleRemittanceAdviceDocument"/>
 <artifact id="Parameters/ExampleSearchByClaim" key="Parameters-ExampleSearchByClaim" name="ExampleSearchByClaim"/>
 <artifact id="Parameters/ExampleSearchByPatient" key="Parameters-ExampleSearchByPatient" name="ExampleSearchByPatient"/>

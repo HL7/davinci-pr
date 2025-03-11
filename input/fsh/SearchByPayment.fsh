@@ -217,45 +217,45 @@ Description: "A profile of Parameters that indicate the result paramaters of sea
 Instance: ExampleSearchByPayment
 InstanceOf: SearchByPaymentParameters
 Description: "An example of searching for remittances by payment."
-* parameter[TIN].valueString = "123456"
+* parameter[TIN].valueString = "123485858"
 * parameter[PaymentInfo]
-  * part[PaymentIssueDate].valuePeriod.start = 2024-06-07
-  * part[PaymentIssueDate].valuePeriod.end = 2024-06-10
-  * part[PaymentNumber].valueString = "11111"
+  * part[PaymentIssueDate].valuePeriod.start = 2023-11-01
+  * part[PaymentIssueDate].valuePeriod.end = 2023-11-15
+  * part[PaymentNumber].valueString = "A123858"
   * part[PaymentAmount].part[PaymentAmountLow].valueMoney
-    * value = 123.45
+    * value = 10.00
     * currency = urn:iso:std:iso:4217#USD
   * part[PaymentAmount].part[PaymentAmountHigh].valueMoney
-    * value = 223.45
+    * value = 40.00
     * currency = urn:iso:std:iso:4217#USD
-* parameter[PayerID].valueString = "54321"
+* parameter[PayerID].valueString = "52415"
 
 Instance: ExampleSearchPaymentResult
 InstanceOf: SearchByPaymentResultParameters
 Description: "An example of a result for searching for a remittance."
-* parameter[TIN].valueString = "123456"
+* parameter[TIN].valueString = "123485858"
 * parameter[Payer]
-  * part[PayerID].valueString = "54321"
+  * part[PayerID].valueString = "52415"
   * part[PayerName].valueString = "Acme Payment Inc"
 * parameter[PaymentInfo]
-  * part[PaymentIssueDate].valueDate = 2024-06-07
-  * part[PaymentNumber].valueString = "11111"
+  * part[PaymentIssueDate].valueDate = 2023-11-02
+  * part[PaymentNumber].valueString = "A12385858"
   * part[PaymentAmount].valueMoney
-    * value = 123.45
+    * value = 30.00
     * currency = urn:iso:std:iso:4217#USD
   * part[Remittance]
-    * part[RemittanceAdviceIdentifier].valueString = "99999"
+    * part[RemittanceAdviceIdentifier].valueString = "A123456BCDEF"
     * part[RemittanceAdviceType].valueCode = urn:ietf:bcp:13#application/EDI-X12
-    * part[RemittanceAdviceDate].valueDate = 2024-06-07
-    * part[RemittanceAdviceFileSize].valueInteger = 123456
+    * part[RemittanceAdviceDate].valueDate = 2023-11-02
+    * part[RemittanceAdviceFileSize].valueInteger = 1536
 * parameter[PaymentInfo]
-  * part[PaymentIssueDate].valueDate = 2024-06-07
-  * part[PaymentNumber].valueString = "88888"
+  * part[PaymentIssueDate].valueDate = 2023-11-03
+  * part[PaymentNumber].valueString = "A12385859"
   * part[PaymentAmount].valueMoney
-    * value = 50.92
+    * value = 30.00
     * currency = urn:iso:std:iso:4217#USD
   * part[Remittance]
-    * part[RemittanceAdviceIdentifier].valueString = "8888"
-    * part[RemittanceAdviceType].valueCode = urn:ietf:bcp:13#application/pdf
-    * part[RemittanceAdviceDate].valueDate = 2024-06-09
-    * part[RemittanceAdviceFileSize].valueInteger = 123456
+    * part[RemittanceAdviceIdentifier].valueString = "A123456BCDXY"
+    * part[RemittanceAdviceType].valueCode = urn:ietf:bcp:13#application/EDI-X12
+    * part[RemittanceAdviceDate].valueDate = 2023-11-03
+    * part[RemittanceAdviceFileSize].valueInteger = 2048

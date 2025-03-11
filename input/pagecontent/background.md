@@ -42,6 +42,7 @@ Implementers should also familiarize themselves with the FHIR resources used wit
     <tr><td><a href="{{site.data.fhir.path}}codesystem.html">CodeSystem</a></td><td>Used to define custom codes specific to this guide</td></tr>
     <tr><td><a href="{{site.data.fhir.path}}operationdefinition.html">OperationDefinition</a></td><td>Used to define the two main operations used in this IG</td></tr>
     <tr><td><a href="{{site.data.fhir.path}}parameters.html">Parameters</a></td><td>Used to provide the information for the operations</td></tr>
+    <tr><td><a href="{{site.data.fhir.path}}operationoutcome.html">OperationOutcome</a></td><td>Used to return errors/warnings on operation results</td></tr>
     <tr><td><a href="{{site.data.fhir.path}}structuredefinition.html">StructureDefinition</a></td><td>Used when profiling resources and defining extensions</td></tr>
     <tr><td><a href="{{site.data.fhir.path}}valueset.html">ValueSet</a></td><td>Used to define code bindings specific to this guide</td></tr>
   </tbody>

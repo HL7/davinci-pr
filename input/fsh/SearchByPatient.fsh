@@ -126,10 +126,18 @@ Description: "A profile of Parameters that indicate the incoming parameters for 
 Instance: ExampleSearchByPatient
 InstanceOf: SearchByPatientParameters
 Description: "An example of searching for remittances by patient."
-* parameter[TIN].valueString = "123456"
-* parameter[ServiceStartDate].valueDate = 2024-01-01
-* parameter[ServiceEndDate].valueDate = 2024-01-31
+* parameter[TIN].valueString = "12345858"
+* parameter[ServiceStartDate].valueDate = 2023-08-01
+* parameter[ServiceEndDate].valueDate = 2023-08-31
 * parameter[Patient]
-  * part[PatientID].valueString = "23456"
+  * part[PatientID].valueString = "M12345513215"
   * part[DateOfBirth].valueDate = 1970-11-27
 
+Instance: ExampleNoRemittancesFound
+InstanceOf: OperationOutcome
+Description: "An example of when no remittances are found for a set of search parameters."
+* issue
+  * severity = #warning
+  * code = #not-found
+  * details = http://terminology.hl7.org/CodeSystem/operation-outcome#SEARCH_NONE
+  * diagnostics = "No remittances found for the given search parameters."

@@ -455,40 +455,55 @@ RuleSet: OutgoingPaymentParameters
 Instance: ExampleSearchByClaim
 InstanceOf: SearchByClaimParameters
 Description: "An example of searching for remittances by claim."
-* parameter[TIN].valueString = "123456"
-* parameter[ServiceStartDate].valueDate = 2024-01-01
-* parameter[ServiceEndDate].valueDate = 2024-01-31
-* parameter[PatientID].valueString = "34567"
+* parameter[TIN].valueString = "123485858"
+* parameter[ServiceStartDate].valueDate = 2023-08-01
+* parameter[ServiceEndDate].valueDate = 2023-08-31
+* parameter[PatientID].valueString = "M12345513215"
 * parameter[Claim]
-  * part[ProviderClaimID].valueString = "12345"
-  * part[ProviderID].valueString = "23456"
-  * part[PayerClaimID].valueString = "34567"
+  * part[ProviderClaimID].valueString = "12345V54321"
+  * part[ProviderID].valueString = "52415"
 
 Instance: ExampleSearchResult
 InstanceOf: SearchResultParameters
 Description: "An example of a result for searching for a remittance."
-* parameter[TIN].valueString = "123456"
+* parameter[TIN].valueString = "123485858"
 * parameter[Payer]
-  * part[PayerID].valueString = "54321"
+  * part[PayerID].valueString = "52415"
   * part[PayerName].valueString = "Acme Payment Inc"
 * parameter[Claim]
-  * part[ProviderClaimID].valueString = "12345"
-  * part[ClaimReceivedDate].valueDate = 2024-06-01
-  * part[ProviderID].valueString = "23456"
-  * part[PayerClaimID].valueString = "34567"
+  * part[ProviderClaimID].valueString = "12345V54321"
+  * part[ClaimReceivedDate].valueDate = 2023-10-05
+  * part[ProviderID].valueString = "52415"
+  * part[PayerClaimID].valueString = "TYU7894562"
   * part[PaymentInfo]
-    * part[PaymentDate].valueDate = 2024-06-07
-    * part[PaymentNumber].valueString = "11111"
+    * part[PaymentDate].valueDate = 2023-11-02
+    * part[PaymentNumber].valueString = "A12385858"
     * part[PaymentAmount].valueMoney
-      * value = 123.45
+      * value = 30.00
       * currency = urn:iso:std:iso:4217#USD
     * part[Remittance]
-      * part[RemittanceAdviceIdentifier].valueString = "99999"
+      * part[RemittanceAdviceIdentifier].valueString = "A123456BCDEF"
       * part[RemittanceAdviceType].valueCode = urn:ietf:bcp:13#application/EDI-X12
-      * part[RemittanceAdviceDate].valueDate = 2024-06-07
-      * part[RemittanceAdviceFileSize].valueInteger = 123456
+      * part[RemittanceAdviceDate].valueDate = 2023-11-02
+      * part[RemittanceAdviceFileSize].valueInteger = 1536
+* parameter[Claim]
+  * part[ProviderClaimID].valueString = "12345V54321"
+  * part[ClaimReceivedDate].valueDate = 2023-10-04
+  * part[ProviderID].valueString = "52415"
+  * part[PayerClaimID].valueString = "TYU7894566"
+  * part[PaymentInfo]
+    * part[PaymentDate].valueDate = 2023-11-03
+    * part[PaymentNumber].valueString = "A12385859"
+    * part[PaymentAmount].valueMoney
+      * value = 30.00
+      * currency = urn:iso:std:iso:4217#USD
+    * part[Remittance]
+      * part[RemittanceAdviceIdentifier].valueString = "A123456BCDXY"
+      * part[RemittanceAdviceType].valueCode = urn:ietf:bcp:13#application/EDI-X12
+      * part[RemittanceAdviceDate].valueDate = 2023-11-04
+      * part[RemittanceAdviceFileSize].valueInteger = 2048
 * parameter[Patient]
   * part[DateOfBirth].valueDate = 1970-11-27
-  * part[PatientID].valueString = "23456"
+  * part[PatientID].valueString = "M12345513215"
   * part[PatientFirstName].valueString = "Adam"
   * part[PatientLastName].valueString = "Patient"
