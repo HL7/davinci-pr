@@ -20,7 +20,7 @@ Provider has claim submissions for a patient without a corresponding remittance.
 
 !["Lonely" Payment](lonely_payment.png "Lonely Payment"){:style="float: none;}
 
-Provider has received the notification of a payment (either by cheque or EFT deposit) but there is no remittance accompanying the payment.  Information about the payment is submitted and a list of remittances assocaited with that payment are returned.
+Provider has received the notification of a payment (either by check or EFT deposit) but there is no remittance accompanying the payment.  Information about the payment is submitted and a list of remittances assocaited with that payment are returned.
 
 
 ### Download Remittance

@@ -121,7 +121,7 @@ This search is used to find remittances associated with a received payment.  The
     * Payment Amount High
   * Payment Number (mandatory)
 
-NOTE: Due to the format of payment numbers, specifically cheques where they may be many leading zeroes, only the significant numbers need to be specified and payers **SHALL** search for these using a wild card search.  eg. 0000000123 can be specified as 123.
+NOTE: Due to the format of payment numbers, specifically checks where they may be many leading zeroes, only the significant numbers need to be specified and payers **SHALL** search for these using a wild card search.  eg. 0000000123 can be specified as 123.
 
 #### Output
 * Provider TIN (mandatory)

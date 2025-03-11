@@ -1,5 +1,5 @@
 ### Systems
-This mplementation guide defines the responsibilities of the two types of systems:
+This implementation guide defines the responsibilities of the two types of systems:
 
 [**Client systems**](CapabilityStatement-PostableRemittanceClientCapabilities.html) are typically Electronic Medical Record (EHR) systems but could theoretically be any system needing to retrieve a postable remittance.
 
