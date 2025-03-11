@@ -213,10 +213,10 @@ Description: "An example of searching for remittances by payment."
   * part[PaymentNumber].valueString = "11111"
   * part[PaymentAmount].part[PaymentAmountLow].valueMoney
     * value = 123.45
-    * currency = urn:iso:std:iso:4217#CAD
+    * currency = urn:iso:std:iso:4217#USD
   * part[PaymentAmount].part[PaymentAmountHigh].valueMoney
     * value = 223.45
-    * currency = urn:iso:std:iso:4217#CAD
+    * currency = urn:iso:std:iso:4217#USD
 * parameter[PayerID].valueString = "54321"
 
 Instance: ExampleSearchPaymentResult
@@ -242,7 +242,7 @@ Description: "An example of a result for searching for a remittance."
   * part[PaymentNumber].valueString = "88888"
   * part[PaymentAmount].valueMoney
     * value = 50.92
-    * currency = urn:iso:std:iso:4217#CAD
+    * currency = urn:iso:std:iso:4217#USD
   * part[Remittance]
     * part[RemittanceAdviceIdentifier].valueString = "8888"
     * part[RemittanceAdviceType].valueCode = RemittanceAdviceType#PDF
