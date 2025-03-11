@@ -127,9 +127,8 @@ Instance: ExampleSearchByPatient
 InstanceOf: SearchByPatientParameters
 Description: "An example of searching for remittances by patient."
 * parameter[TIN].valueString = "123456"
-* parameter[DateOfService].valuePeriod
-  * start = 2024-01-01
-  * end = 2024-01-31
+* parameter[ServiceStartDate].valueDate = 2024-01-01
+* parameter[ServiceEndDate].valueDate = 2024-01-31
 * parameter[Patient]
   * part[PatientID].valueString = "23456"
   * part[DateOfBirth].valueDate = 1970-11-27

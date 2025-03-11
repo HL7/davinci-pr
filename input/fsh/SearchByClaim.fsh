@@ -456,9 +456,8 @@ Instance: ExampleSearchByClaim
 InstanceOf: SearchByClaimParameters
 Description: "An example of searching for remittances by claim."
 * parameter[TIN].valueString = "123456"
-* parameter[DateOfService].valuePeriod
-  * start = 2024-01-01
-  * end = 2024-01-31
+* parameter[ServiceStartDate].valueDate = 2024-01-01
+* parameter[ServiceEndDate].valueDate = 2024-01-31
 * parameter[PatientID].valueString = "34567"
 * parameter[Claim]
   * part[ProviderClaimID].valueString = "12345"

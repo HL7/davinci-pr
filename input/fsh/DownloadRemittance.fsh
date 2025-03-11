@@ -64,7 +64,7 @@ Instance: ExampleDownloadRemittance
 InstanceOf: DownloadRemittanceParameters
 Description: "An example of specifying a remittance to download."
 * parameter[RemittanceAdviceIdentifier].valueString = "99999"
-* parameter[RemittanceAdviceType].valueCode = RemittanceAdviceType#835
+* parameter[RemittanceAdviceType].valueCode = urn:ietf:bcp:13#application/EDI-X12
 
 Profile: RemittanceAdviceDocument
 Parent: Binary
