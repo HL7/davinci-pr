@@ -13,7 +13,7 @@ The intent of this FHIR Implementation Guide is to create a Postable Remittance 
 
 The current processes to retrieve missing remits are largely manual – portal retrieval, phone calls, and faxes. The FHIR standard and FHIR API can help automate the workflow and increase adoption of using APIs to alleviate the reliance on manual workflows. Automation opportunities would remove most of the need for human interaction, and, in doing so, reduce the risk of human error and reduce cost.
 
-In scenarios where remits are missing due to any reasons, providers/vendors can request a copy of an already issued 835 or paper remit via the API, and payers/clearinghouses will respond with an attachment which is the copy of the HIPAA compliant 835 or pdf of a paper remit that the payer/clearinghouse already issued.
+In scenarios where remits are missing due to any reasons, providers/vendors can request a copy of an already issued 835 or paper remit via the API, and payers/clearinghouses will respond with an attachment which is the copy of the HIPAA compliant 835 or pdf of a paper remit that the payer/clearinghouse already issued.  There are existing processes that payers and clearinghouses take to secure their portals and similar processes will be taken to secure access to the APIs defined in this IG such that information is provided to providers only when allowed.  See the [Privacy & Security](security.html) page for additional detail.
 
 ![Basic EDI Workflow](basic_workflow.png "Basic EDI Workflow"){:style="float: none;}
 
