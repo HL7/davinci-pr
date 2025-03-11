@@ -48,7 +48,7 @@ Missing remits is a prevalent and widespread issue, and the result is that provi
 * Provider transitioning EHR/RCMs, where the remit destination on file with payers may be tied to the old EHR/RCM, and in the process of updating to the new EHR/RCM, remits can send to the wrong place
 * Payers simply returning payment without an accompanying remit
 * Crossover claims – i.e. when a payer (typically a government payer) automatically forwards the claim to the patient’s secondary insurance – a complicated and error-prone process that often creates processing issues for the secondary payer
-* Some payers don’t allow out of network providers to enroll for ERA, so when an out-of-network provider submits a claim to a payer, it can sometimes cause the remits to not get returned as expected
+* Some payers don’t allow out of network providers to enroll for ERA, so when an out-of-network provider submits a claim to a payer, it can sometimes cause the 835 remits to not get returned as expected
 * For payers that have specific payer claim and remittance routing arrangements for remittances, the general complexity of these arrangements can cause issues
 * If a remittance is sent as a paper, that can sometimes get shredded by accident or get lost in the mail
 
