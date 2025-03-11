@@ -10,7 +10,7 @@ In scenarios where remits are missing due to any reasons, providers/vendors can 
 
 There is excessive time and effort spent by payer and provider organizations to obtain missing remits.
 
-* Gaps in EDI: EDI transactions do not cover this use case since an 835 can’t be delivered to multiple destinations
+* Gaps in EDI: In a Shared TIN scenario, EDI transactions do not cover this use case since the same 835 generally are not delivered to multiple destinations.  See below for more information about the Shared TIN scenario.
 * Portal access is complex: Provider-facing portals are the main modality used to manually retrieve missing remit. It is very difficult to use portals at scale for this work and managing access across many portals is challenging
 * Phone calls are expensive, time consuming, and some payers do not accept phone calls
 * Cybersecurity regulations: Cybersecurity regulations are difficult for billing service/vendors to manage as the landscape changes quickly. APIs present an alternative to traditional portals
