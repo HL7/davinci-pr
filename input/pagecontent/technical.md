@@ -146,5 +146,5 @@ The remittance identifier is provided along with an optional hint as to the type
 * Remittance Advice Type Hint (optional)
 
 #### Output
-The copy of the remittance advice is returned in a FHIR Binary resource with the Binary.data element containing the data.  Whether the remittance is returned as a 835 document or a PDF file, it is gzipped and base64 encoded and returned in the data element.  The Binary.contentType element is used to indicate whether the returned remittance is a PDF file ('application/pdf+gzip') or an 835 document ('application/txt+gzip').  The remittance identifier is also returned as an extension on the Binary.data element.
+The copy of the remittance advice is returned in a FHIR Binary resource with the Binary.data element containing the data.  Whether the remittance is returned as a 835 document or a PDF file, it is gzipped and returned in the data element.  The Binary.contentType element is used to indicate whether the returned remittance is a PDF file ('application/pdf+gzip') or an 835 document ('application/txt+gzip').  The remittance identifier is also returned as an extension on the Binary.data element.
 
