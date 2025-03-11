@@ -42,12 +42,12 @@ extension:
     valueCode: claims 
 
 pages:
-  usecases.md:
-    title: Use Cases
   index.md:
     title: PR IG Home Page
   background.md:
     title: Reading this IG
+  usecases.md:
+    title: Use Cases
   credits.md:
     title: Project and Participants
   conformance.md:
@@ -60,10 +60,10 @@ pages:
     title: FHIR Artifacts
   artifacts.html:
     title: Artifact List
-  changelog.md:
-    title: Change History
   downloads.md:
     title: Downloads
+  changelog.md:
+    title: Change History
 
 menu:
   IG Home: index.html

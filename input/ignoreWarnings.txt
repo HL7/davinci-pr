@@ -15,3 +15,6 @@ DA VINCI: The Change Log page (changelog.html) does not include any Jira tracker
 # 01 - information messages that come from the base FHIR specification
 The extension http://hl7.org/fhir/StructureDefinition/elementdefinition-maxValueSet|5.2.0 is deprecated
 The extension http://hl7.org/fhir/StructureDefinition/regex|5.2.0 is deprecated with the note This was deprecated in favor of using a constraint on the element using FHIRPath, since constraints allow for the provision of a human readable message associated with the regex
+
+# 02 - using a draft code system for the example (code system is example in FHIR core)
+Reference to draft CodeSystem http://terminology.hl7.org/CodeSystem/operation-outcome|3.0.0
