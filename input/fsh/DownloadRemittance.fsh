@@ -86,6 +86,6 @@ Description: "An identifier for the remittance."
 Instance: ExampleRemittanceAdviceDocument
 InstanceOf: RemittanceAdviceDocument
 Description: "An example of a returned remittance advice document"
-* contentType = urn:ietf:bcp:13#application/txt+gzip
+* contentType = urn:ietf:bcp:13#application/EDI-X12+gzip
 * data = "YmFzZTY0LWVuY29kZWQgemlwIGZpbGUgb2YgdGhlIG9yaWdpbmFsIGRvY3VtZW50"
 * data.extension[remittanceIdentifier].valueString = "A123456BCD"
