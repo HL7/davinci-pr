@@ -1,14 +1,9 @@
 {
   "package-id" : "hl7.fhir.us.davinci-pr",
-  "version" : "1.0.0-ballot",
-  "path" : "http://hl7.org/fhir/us/davinci-pr/2025Jan",
-  "status" : "ballot",
+  "version" : "1.0.0",
+  "path" : "http://hl7.org/fhir/us/davinci-pr/STU1",
+  "status" : "trial-use",
   "sequence" : "STU 1",
-  "mode": "working",
-  "first": true,
-  "desc" : "This is the first balloted version of the Postable Remittance specification.",
-  "title": "DaVinci Postable Remittance FHIR Implementation Guide",
-  "introduction": "This IG provides a FHIR API to search for and retrieve a copy of a previously issued postable remittance.",
-  "ci-build": "http://build.fhir.org/ig/HL7/davinci-pr",
-  "category": "financial"
+  "mode": "milestone",
+  "desc" : "This is the published STU1 version of the Postable Remittance specification.",
 }

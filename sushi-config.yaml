@@ -8,10 +8,10 @@ canonical: http://hl7.org/fhir/us/davinci-pr
 name: DaVinciPostableRemittance
 title: Da Vinci Postable Remittance
 status: active # draft | active | retired | unknown
-version: 1.0.0-ballot
+version: 1.0.0
 fhirVersion: 4.0.1 # https://www.hl7.org/fhir/valueset-FHIR-version.html
 copyrightYear: 2024+
-releaseLabel: STU 1 Ballot # ci-build | draft | qa-preview | ballot | trial-use | release | update | normative+trial-use
+releaseLabel: Trial-Use # ci-build | draft | qa-preview | ballot | trial-use | release | update | normative+trial-use
 # license: CC0-1.0 # https://www.hl7.org/fhir/valueset-spdx-license.html
 jurisdiction: urn:iso:std:iso:3166#US "United States of America"
 publisher:
@@ -40,6 +40,30 @@ extension:
     valueInteger: 1
   - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-wg
     valueCode: claims 
+
+pages:
+  usecases.md:
+    title: Use Cases
+  index.md:
+    title: PR IG Home Page
+  background.md:
+    title: Reading this IG
+  credits.md:
+    title: Project and Participants
+  conformance.md:
+    title: Conformance Expectations
+  technical.md:
+    title: Technical Expectations
+  security.md:
+    title: Privacy and Security
+  fhirArtifacts.md:
+    title: FHIR Artifacts
+  artifacts.html:
+    title: Artifact List
+  changelog.md:
+    title: Change History
+  downloads.md:
+    title: Downloads
 
 menu:
   IG Home: index.html

@@ -18,7 +18,7 @@ Usage: #definition
   * name = #DateOfServicePeriod
   * use = #in
   * min = 0
-  * max= "1"
+  * max = "1"
   * documentation = "Date of Service Period"
   * type = #Period
 * parameter[+]
