@@ -275,14 +275,14 @@ RuleSet: OutgoingSearchParameters
 * parameter[+]
   * name = #TIN
   * use = #out
-  * min = 0
+  * min = 1
   * max = "1"
   * documentation = "Medical Group / Billing Provider / Payee TIN"
   * type = #string
 * parameter[+]
   * name = #Payer
   * use = #out
-  * min = 0
+  * min = 1
   * max = "1"
   * documentation = "Details of payer information."
   * part[+]
@@ -304,7 +304,7 @@ RuleSet: OutgoingRemittanceParameters
 * part[+]
   * name = #Remittance
   * use = #out
-  * min = 0
+  * min = 1
   * max = "*"
   * documentation = "Details of remittance advice."
   * part[+]
@@ -344,7 +344,7 @@ RuleSet: OutgoingClaimParameters
 * parameter[+]
   * name = #Claim
   * use = #out
-  * min = 0
+  * min = 1
   * max = "*"
   * documentation = "Details to verify correct claim found."
   * part[+]
@@ -415,7 +415,7 @@ RuleSet: OutgoingClaimParameters
 RuleSet: OutgoingPaymentParameters
 * name = #PaymentInfo
 * use = #out
-* min = 0
+* min = 1
 * max = "*"
 * documentation = "Details of adjudicated payment."
 * part[+]

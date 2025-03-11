@@ -130,12 +130,12 @@ Parent: Parameters
 Id: searchByPaymentResultParameters
 Title: "Search By Payment Result Outgoing Parameters"
 Description: "A profile of Parameters that indicate the result paramaters of searching for a remittance by a payment."
-* parameter 2..*
+* parameter 3..*
 * parameter ^slicing.discriminator.type = #value
 * parameter ^slicing.discriminator.path = "name"
 * parameter ^slicing.rules = #open
 * parameter ^slicing.description = "Slice parameters based on the name"
-* parameter contains TIN 1..1 and Payer 1..1 and PaymentInfo 0..1
+* parameter contains TIN 1..1 and Payer 1..1 and PaymentInfo 1..*
 * parameter[TIN]
   * name = "TIN"
   * value[x] 1..1
@@ -158,12 +158,12 @@ Description: "A profile of Parameters that indicate the result paramaters of sea
     * value[x] only string
 * parameter[PaymentInfo]
   * name = "PaymentInfo"
-  * part 4..4
+  * part 4..*
   * part ^slicing.discriminator.type = #value
   * part ^slicing.discriminator.path = "name"
   * part ^slicing.rules = #open
   * part ^slicing.description = "Slice Payment parameter parts based on the name"
-  * part contains PaymentIssueDate 1..1 and PaymentNumber 1..1 and PaymentAmount 1..1 and Remittance 1..1
+  * part contains PaymentIssueDate 1..1 and PaymentNumber 1..1 and PaymentAmount 1..1 and Remittance 1..*
   * part[PaymentIssueDate]
     * name = "PaymentIssueDate"
     * value[x] 1..1
