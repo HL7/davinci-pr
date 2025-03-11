@@ -1,9 +1,5 @@
 == Suppressed Messages ==
 
-# Vocabulary that will always live in this guide
-Most code systems defined in HL7 IGs will need to move to THO later during the process. Consider giving this code system a THO URL now (See https://confluence.hl7.org/display/TSMG/Terminology+Play+Book, and/or talk to TSMG)
-
-
 # DAVINCI - no dependency on US Core required
 DA VINCI: This IG does not include an explicit dependency on US Core 7.0.0.
 DA VINCI: This IG does not include an explicit dependency on US Core 6.1.0.
@@ -15,3 +11,7 @@ DA VINCI: The Conformance page (conformance.html) Must Support section needs to 
 
 # DAVINCI - First time being published so no tracker items yet
 DA VINCI: The Change Log page (changelog.html) does not include any Jira tracker items links for the section with title Version = 1.0.0-ballot
+
+# 01 - information messages that come from the base FHIR specification
+The extension http://hl7.org/fhir/StructureDefinition/elementdefinition-maxValueSet|5.2.0 is deprecated
+The extension http://hl7.org/fhir/StructureDefinition/regex|5.2.0 is deprecated with the note This was deprecated in favor of using a constraint on the element using FHIRPath, since constraints allow for the provision of a human readable message associated with the regex
