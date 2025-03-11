@@ -25,4 +25,4 @@ Provider has received the notification of a payment (either by cheque or EFT dep
 
 ### Download Remittance
 
-Once a list of remittances has been returned via one of the previous search mechanisms, a specific remittance identifier is specified and a copy of the remittance, either in 835 format or PDF format, is returned as an encoded attachment in a FHIR DocumentReference instance.
+Once a list of remittances has been returned via one of the previous search mechanisms, a specific remittance identifier is specified and a copy of the remittance, either in 835 format or PDF format, is returned as an encoded attachment in a FHIR DocumentReference instance.  NOTE: Requesters are responsible for indicating to their downstream systems that this copy of the original 835 remittance may have some posting concerns due to duplicates.  It is the receiver's responsibility to indicate that this re-transmission step has occurred.
