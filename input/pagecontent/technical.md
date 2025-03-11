@@ -15,7 +15,7 @@ The list of input and output search parameters has been reviewed by multiple pro
 {% endraw %}
 
 #### No Match Results
-If the set of input parameters results in no results found, then the output Parameters will be empty.
+If the set of input parameters results in no results found, then an OperationOutcome SHALL be returned to indicate that no results were found.
 
 
 ### Search for Remittance by Claim
