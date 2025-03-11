@@ -15,6 +15,13 @@ Usage: #definition
 * outputProfile = Canonical(SearchResultParameters)
 * insert IncomingSearchParameters
 * parameter[+]
+  * name = #DateOfServicePeriod
+  * use = #in
+  * min = 1
+  * max= "1"
+  * documentation = "Date of Service Period"
+  * type = #Period
+* parameter[+]
   * name = #Patient
   * use = #in
   * min = 1
@@ -61,7 +68,7 @@ Description: "A profiloe of Parameters that indicate the incoming parameters for
 * parameter ^slicing.discriminator.path = "name"
 * parameter ^slicing.rules = #open
 * parameter ^slicing.description = "Slice parameters based on the name"
-* parameter contains TIN 1..1 and DateOfService 0..1 and PayerID 0..1 and PayerName 0..1 and Patient 1..1
+* parameter contains TIN 1..1 and DateOfService 1..1 and PayerID 0..1 and PayerName 0..1 and Patient 1..1
 
 * parameter[TIN]
   * name = "TIN"

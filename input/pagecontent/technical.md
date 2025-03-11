@@ -24,10 +24,10 @@ This search is used to find remittances associated with a previous claim submiss
 
 #### Input
 * Provider TIN (mandatory)
-* Date Of Service Period (optional)
-* Patient ID (optional)
 * Payer ID (optional)
 * Payer Name (optional)
+* Date Of Service Period (optional)
+* Patient ID (optional)
 * Claim Information (mandatory)
   * Provider Claim ID (mandatory) - also known as Patient Account Number
   * Provider ID (optional)
@@ -71,9 +71,9 @@ This search is used to find remittances associated with a patient.  The payer wi
 
 #### Input
 * Provider TIN (mandatory)
-* Date of Service Period (optional)
 * Payer ID (optional)
 * Payer Name (optional)
+* Date of Service Period (mandatory)
 * Patient Information (mandatory)
   * Patient ID (mandatory)
   * Patient Date of Birth (mandatory)
@@ -111,9 +111,9 @@ This search is used to find remittances associated with a received payment.  The
 
 #### Input
 * Provider TIN (mandatory)
-* Date of Service Period (optional)
 * Payer ID (optional)
 * Payer Name (optional)
+* Date of Service Period (optional)
 * Payment Information (mandatory)
   * Payment Issue Date Period (mandatory)
   * Payment Amount (optional)

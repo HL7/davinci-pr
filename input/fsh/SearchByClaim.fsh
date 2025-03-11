@@ -15,6 +15,13 @@ Usage: #definition
 * outputProfile = Canonical(SearchResultParameters)
 * insert IncomingSearchParameters
 * parameter[+]
+  * name = #DateOfServicePeriod
+  * use = #in
+  * min = 0
+  * max= "1"
+  * documentation = "Date of Service Period"
+  * type = #Period
+* parameter[+]
   * name = #PatientID
   * use = #in
   * min = 0
@@ -248,13 +255,6 @@ RuleSet: IncomingSearchParameters
   * max = "1"
   * documentation = "Medical Group / Billing Provider / Payee TIN"
   * type = #string
-* parameter[+]
-  * name = #DateOfService
-  * use = #in
-  * min = 0
-  * max = "1"
-  * documentation = "Date of Service"
-  * type = #Period
 * parameter[+]
   * name = #PayerID
   * use = #in

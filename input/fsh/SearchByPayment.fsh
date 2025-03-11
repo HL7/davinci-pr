@@ -15,6 +15,13 @@ Usage: #definition
 * outputProfile = Canonical(SearchByPaymentResultParameters)
 * insert IncomingSearchParameters
 * parameter[+]
+  * name = #DateOfServicePeriod
+  * use = #in
+  * min = 0
+  * max= "1"
+  * documentation = "Date of Service Period"
+  * type = #Period
+* parameter[+]
   * name = #PaymentInfo
   * use = #in
   * min = 1
@@ -224,7 +231,7 @@ Description: "An example of a result for searching for a remittance."
   * part[PaymentNumber].valueString = "11111"
   * part[PaymentAmount].valueMoney
     * value = 123.45
-    * currency = urn:iso:std:iso:4217#CAD
+    * currency = urn:iso:std:iso:4217#USD
   * part[Remittance]
     * part[RemittanceAdviceIdentifier].valueString = "99999"
     * part[RemittanceAdviceType].valueCode = RemittanceAdviceType#835
