@@ -1,12 +1,5 @@
 ## Background
 
-### Plain Language Summary about this Guide
-The Da Vinci Postable Remittance Implementation Guide defines a standardized method for healthcare providers to electronically request and receive duplicates of an originally transmitted remittance advice, which are explanations of payments from insurance payers.
-
-Currently, providers often rely on inefficient and time-consuming methods to retrieve duplicates like payer portals, phone calls, or faxes to obtain these documents. This Implementation Guide enables providers to search for remittances based on criteria such as claim information, patient details, or payment data. Providers can then download the remittance electronically, typically as an 835 document or a Portable Document Format (PDF).  
-
-The Da Vinci Postable Remittance Implementation Guide offers a solution for streamlining the duplicate retrieval process, potentially reducing manual effort and improving efficiency for healthcare providers.
-
 ### Introduction
 
 The intent of this FHIR Implementation Guide is to create a Postable Remittance (Remit) FHIR API to retrieve a copy of a previously issued remittance. Rather than going to a number of different payer/clearinghouse portals or making phone calls to payers, this API is intended to make it simpler for providers/vendors to retrieve a copy of the already issued remittance.
