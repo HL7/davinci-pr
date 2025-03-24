@@ -12,6 +12,9 @@ DA VINCI: The Conformance page (conformance.html) Must Support section needs to 
 # DAVINCI - First time being published so no tracker items yet
 DA VINCI: The Change Log page (changelog.html) does not include any Jira tracker items links for the section with title Version = 1.0.0-ballot
 
+# DAVINCI - Validator link has changed, Da Vinci QA needs to be updated
+DA VINCI: The Downloads page (downloads.html) must include a link to the current version of the FHIR validator https://fhir.github.io/latest-ig-validator/org.hl7.fhir.validator.jar
+
 # 01 - information messages that come from the base FHIR specification
 The extension http://hl7.org/fhir/StructureDefinition/elementdefinition-maxValueSet|5.2.0 is deprecated
 The extension http://hl7.org/fhir/StructureDefinition/regex|5.2.0 is deprecated with the note This was deprecated in favor of using a constraint on the element using FHIRPath, since constraints allow for the provision of a human readable message associated with the regex
