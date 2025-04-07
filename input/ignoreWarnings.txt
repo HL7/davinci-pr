@@ -13,7 +13,7 @@ DA VINCI: The Conformance page (conformance.html) Must Support section needs to 
 DA VINCI: The Change Log page (changelog.html) does not include any Jira tracker items links for the section with title Version = 1.0.0-ballot
 
 # DAVINCI - Validator link has changed, Da Vinci QA needs to be updated
-DA VINCI: The Downloads page (downloads.html) must include a link to the current version of the FHIR validator https://fhir.github.io/latest-ig-validator/org.hl7.fhir.validator.jar
+DA VINCI: The Downloads page (downloads.html) must include a link to the current version of the FHIR validator - https://fhir.github.io/latest-ig-validator/org.hl7.fhir.validator.jar
 
 # 01 - information messages that come from the base FHIR specification
 The extension http://hl7.org/fhir/StructureDefinition/elementdefinition-maxValueSet|5.2.0 is deprecated
@@ -21,3 +21,6 @@ The extension http://hl7.org/fhir/StructureDefinition/regex|5.2.0 is deprecated 
 
 # 02 - using a draft code system for the example (code system is example in FHIR core)
 Reference to draft CodeSystem http://terminology.hl7.org/CodeSystem/operation-outcome|3.0.0
+
+# 03 - IETF system will not resolve
+URL value 'urn:ietf:bcp:13' does not resolve
